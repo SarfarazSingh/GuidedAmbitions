@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Coach | Veteran Transition Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/modern-ui.css">
+    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="Veteran Transition Platform Logo">
+                        <h1>Veteran Transition Platform</h1>
+                    </a>
+                </div>
+                <button class="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="../../index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active">Tools</a>
+                            <div class="dropdown-menu">
+                                <a href="../skill_translator/index.html" class="dropdown-item">Skill Translator</a>
+                                <a href="../resume_generator/index.html" class="dropdown-item">Resume Generator</a>
+                                <a href="../ats_scanner/index.html" class="dropdown-item">ATS Scanner</a>
+                                <a href="../interview_coach/index.html" class="dropdown-item active">Interview Coach</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../about.html" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../contact.html" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="tool-hero">
+            <div class="container">
+                <div class="tool-hero-content">
+                    <h1>AI Interview Coach</h1>
+                    <p>Practice interviews with AI feedback to build confidence and improve your performance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interview Coach Section -->
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="interview-coach-container">
+                            <!-- Setup Phase -->
+                            <div class="interview-setup" id="interviewSetup">
+                                <div class="setup-header">
+                                    <h2>Prepare for Your Interview</h2>
+                                    <p>Customize your practice interview to match your target position</p>
+                                </div>
+                                
+                                <div class="setup-form">
+                                    <div class="form-group">
+                                        <label for="jobTitle">Target Job Title</label>
+                                        <input type="text" id="jobTitle" class="form-input" placeholder="e.g., Project Manager, Software Engineer">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="industry">Industry</label>
+                                        <select id="industry" class="form-select">
+                                            <option value="">Select Industry</option>
+                                            <option value="technology">Technology</option>
+                                            <option value="healthcare">Healthcare</option>
+                                            <option value="finance">Finance</option>
+                                            <option value="manufacturing">Manufacturing</option>
+                                            <option value="logistics">Logistics & Supply Chain</option>
+                                            <option value="consulting">Consulting</option>
+                                            <option value="government">Government</option>
+                                            <option value="education">Education</option>
+                                            <option value="retail">Retail</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="experienceLevel">Experience Level</label>
+                                        <select id="experienceLevel" class="form-select">
+                                            <option value="">Select Experience Level</option>
+                                            <option value="entry">Entry Level (0-2 years)</option>
+                                            <option value="mid">Mid Level (3-5 years)</option>
+                                            <option value="senior">Senior Level (6-10 years)</option>
+                                            <option value="executive">Executive Level (10+ years)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="interviewType">Interview Type</label>
+                                        <select id="interviewType" class="form-select">
+                                            <option value="">Select Interview Type</option>
+                                            <option value="behavioral">Behavioral Interview</option>
+                                            <option value="technical">Technical Interview</option>
+                                            <option value="leadership">Leadership Interview</option>
+                                            <option value="situational">Situational Interview</option>
+                                            <option value="general">General Interview</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Question Focus Areas (Select up to 3)</label>
+                                        <div class="checkbox-group">
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus1" class="focus-checkbox" value="leadership">
+                                                <label for="focus1">Leadership & Management</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus2" class="focus-checkbox" value="teamwork">
+                                                <label for="focus2">Teamwork & Collaboration</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus3" class="focus-checkbox" value="problem-solving">
+                                                <label for="focus3">Problem Solving</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus4" class="focus-checkbox" value="communication">
+                                                <label for="focus4">Communication Skills</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus5" class="focus-checkbox" value="adaptability">
+                                                <label for="focus5">Adaptability & Flexibility</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus6" class="focus-checkbox" value="technical">
+                                                <label for="focus6">Technical Expertise</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus7" class="focus-checkbox" value="conflict">
+                                                <label for="focus7">Conflict Resolution</label>
+                                            </div>
+                                            <div class="checkbox-item">
+                                                <input type="checkbox" id="focus8" class="focus-checkbox" value="military-transition">
+                                                <label for="focus8">Military-to-Civilian Transition</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="interviewLength">Interview Length</label>
+                                        <select id="interviewLength" class="form-select">
+                                            <option value="short">Short (5 questions)</option>
+                                            <option value="medium" selected>Medium (10 questions)</option>
+                                            <option value="long">Long (15 questions)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="difficultyLevel">Difficulty Level</label>
+                                        <div class="difficulty-slider-container">
+                                            <input type="range" id="difficultyLevel" min="1" max="5" value="3" class="difficulty-slider">
+                                            <div class="difficulty-labels">
+                                                <span>Beginner</span>
+                                                <span>Intermediate</span>
+                                                <span>Advanced</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="setup-actions">
+                                        <button id="startInterviewBtn" class="btn btn-primary btn-lg btn-animated">Start Interview</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Interview Phase -->
+                            <div class="interview-session" id="interviewSession" style="display: none;">
+                                <div class="session-header">
+                                    <div class="session-info">
+                                        <h2>Interview in Progress</h2>
+                                        <div class="progress-indicator">
+                                            <span id="currentQuestion">1</span>/<span id="totalQuestions">10</span>
+                                        </div>
+                                    </div>
+                                    <div class="timer" id="questionTimer">02:00</div>
+                                </div>
+                                
+                                <div class="question-container">
+                                    <div class="question-text" id="questionText">
+                                        Tell me about a time when you had to lead a team through a difficult situation. What was your approach, and what was the outcome?
+                                    </div>
+                                    
+                                    <div class="answer-area">
+                                        <textarea id="answerInput" class="answer-textarea" placeholder="Type your answer here..."></textarea>
+                                    </div>
+                                    
+                                    <div class="answer-controls">
+                                        <button id="skipQuestionBtn" class="btn btn-outline">Skip Question</button>
+                                        <button id="submitAnswerBtn" class="btn btn-primary btn-animated">Submit Answer</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="interview-controls">
+                                    <button id="pauseInterviewBtn" class="btn btn-outline">
+                                        <i class="fas fa-pause"></i> Pause Interview
+                                    </button>
+                                    <button id="endInterviewBtn" class="btn btn-outline danger">
+                                        <i class="fas fa-times"></i> End Interview
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Feedback Phase -->
+                            <div class="interview-feedback" id="interviewFeedback" style="display: none;">
+                                <div class="feedback-header">
+                                    <h2>Interview Performance Analysis</h2>
+                                    <div class="overall-score">
+                                        <div class="score-circle">
+                                            <span id="overallScore">85</span>
+                                        </div>
+                                        <span class="score-label">Overall Score</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="feedback-summary">
+                                    <h3>Summary</h3>
+                                    <p id="feedbackSummary">
+                                        You demonstrated strong leadership qualities and provided specific examples from your military experience. Your answers were well-structured and showed clear problem-solving abilities. Consider providing more quantifiable results and focusing on translating military terminology to civilian equivalents.
+                                    </p>
+                                </div>
+                                
+                                <div class="feedback-categories">
+                                    <div class="category-item">
+                                        <div class="category-header">
+                                            <h4>Content Quality</h4>
+                                            <div class="category-score">
+                                                <div class="score-bar">
+                                                    <div class="score-fill" style="width: 80%"></div>
+                                                </div>
+                                                <span>80%</span>
+                                            </div>
+                                        </div>
+                                        <p>Your answers contained relevant examples and demonstrated your qualifications. Consider adding more specific metrics and outcomes to strengthen your responses.</p>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <div class="category-header">
+                                            <h4>Structure & Clarity</h4>
+                                            <div class="category-score">
+                                                <div class="score-bar">
+                                                    <div class="score-fill" style="width: 90%"></div>
+                                                </div>
+                                                <span>90%</span>
+                                            </div>
+                                        </div>
+                                        <p>Your responses followed a clear STAR format (Situation, Task, Action, Result) and were well-organized. Excellent job maintaining a logical flow in your answers.</p>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <div class="category-header">
+                                            <h4>Military-to-Civilian Translation</h4>
+                                            <div class="category-score">
+                                                <div class="score-bar">
+                                                    <div class="score-fill" style="width: 70%"></div>
+                                                </div>
+                                                <span>70%</span>
+                                            </div>
+                                        </div>
+                                        <p>You made good efforts to translate military concepts, but some terminology might still be unfamiliar to civilian hiring managers. Try replacing terms like "battalion" with "large team" and "mission" with "project objective."</p>
+                                    </div>
+                                    
+                                    <div class="category-item">
+                                        <div class="category-header">
+                                            <h4>Relevance to Job Target</h4>
+                                            <div class="category-score">
+                                                <div class="score-bar">
+                                                    <div class="score-fill" style="width: 85%"></div>
+                                                </div>
+                                                <span>85%</span>
+                                            </div>
+                                        </div>
+                                        <p>Your examples aligned well with the target position's requirements. Continue focusing on transferable skills that directly relate to the job description.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="question-feedback">
+                                    <h3>Question-by-Question Feedback</h3>
+                                    <div class="accordion" id="questionFeedbackAccordion">
+                                        <!-- Question 1 -->
+                                        <div class="accordion-item">
+                                            <div class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    <span class="question-number">Q1:</span> Tell me about a time when you had to lead a team through a difficult situation.
+                                                </button>
+                                            </div>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#questionFeedbackAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="feedback-content">
+                                                        <h5>Your Answer:</h5>
+                                                        <p class="user-answer">During my time as a Platoon Leader in the Army, I led a team of 30 soldiers through a complex training exercise where we faced unexpected weather conditions and equipment failures. I quickly assessed the situation, reorganized our resources, and developed an alternative approach to complete our objectives. I delegated specific responsibilities to my team leaders, maintained clear communication channels, and established regular check-ins to monitor progress. Despite the challenges, we completed the exercise on time and received commendation from battalion leadership for our adaptability and performance.</p>
+                                                        
+                                                        <h5>Strengths:</h5>
+                                                        <ul class="feedback-list">
+                                                            <li>Clear example that demonstrates leadership in a challenging situation</li>
+                                                            <li>Good description of your specific actions and approach</li>
+                                                            <li>Included positive outcome and recognition</li>
+                                                        </ul>
+                                                        
+                                                        <h5>Areas for Improvement:</h5>
+                                                        <ul class="feedback-list">
+                                                            <li>Consider translating "Platoon Leader" to "Team Leader" or "Manager"</li>
+                                                            <li>Add specific metrics about the impact (e.g., "improved completion time by 15%")</li>
+                                                            <li>Connect this experience more explicitly to the target job role</li>
+                                                        </ul>
+                                                        
+                                                        <div class="improved-answer">
+                                                            <h5>Improved Answer Example:</h5>
+                                                            <p>"As a Team Leader managing 30 team members in a high-pressure environment, I faced a situation where we encountered unexpected environmental challenges and technical failures during a critical project. I quickly assessed our resources, developed a contingency plan, and reorganized our approach to meet our objectives. I assigned clear responsibilities to my three sub-team leaders, established a communication protocol with hourly updates, and personally monitored key risk areas. Through this approach, we completed the project on schedule despite the setbacks, improved our standard operating procedures, and received recognition from senior management for exceeding expectations under difficult circumstances. This experience taught me valuable lessons about adaptable leadership and resource management that would directly apply to the project management challenges in this position."</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Question 2 -->
+                                        <div class="accordion-item">
+                                            <div class="accordion-header" id="headingTwo">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <span class="question-number">Q2:</span> How do you handle conflicting priorities and deadlines?
+                                                </button>
+                                            </div>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#questionFeedbackAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="feedback-content">
+                                                        <h5>Your Answer:</h5>
+                                                        <p class="user-answer">I approach conflicting priorities by first evaluating the strategic importance and urgency of each task. During my military service, I often had to balance multiple mission-critical objectives with limited resources. I developed a system where I would categorize tasks based on impact, deadline, and resource requirements. For example, when managing logistics for field operations, I would create a decision matrix to determine which supplies needed to be prioritized. I also believe in transparent communication with stakeholders when deadlines might be affected. In one instance, I had to coordinate two competing training requirements and found that by clearly explaining the constraints to leadership, we were able to negotiate a more realistic timeline that allowed both objectives to be met successfully.</p>
+                                                        
+                                                        <h5>Strengths:</h5>
+                                                        <ul class="feedback-list">
+                                                            <li>Detailed explanation of your prioritization methodology</li>
+                                                            <li>Good example of using a decision matrix for prioritization</li>
+                                                            <li>Highlighted importance of stakeholder communication</li>
+                                                        </ul>
+                                                        
+                                                        <h5>Areas for Improvement:</h5>
+                                                        <ul class="feedback-list">
+                                                            <li>Provide a more specific example with clear outcomes</li>
+                                                            <li>Mention tools or software you've used for task management</li>
+                                                            <li>Address how you handle stress during high-pressure deadline situations</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="improvement-plan">
+                                    <h3>Personal Improvement Plan</h3>
+                                    <div class="improvement-items">
+                                        <div class="improvement-item">
+                                            <div class="improvement-icon">
+                                                <i class="fas fa-language"></i>
+                                            </div>
+                                            <div class="improvement-content">
+                                                <h4>Civilian Language Translation</h4>
+                                                <p>Practice translating military terms and concepts into civilian equivalents. Create a personal glossary of terms you commonly use and their civilian counterparts.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="improvement-item">
+                                            <div class="improvement-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div class="improvement-content">
+                                                <h4>Quantify Your Achievements</h4>
+                                                <p>Incorporate more specific metrics and numbers in your examples. For each accomplishment, identify at least one quantifiable result.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="improvement-item">
+                                            <div class="improvement-icon">
+                                                <i class="fas fa-bullseye"></i>
+                                            </div>
+                                            <div class="improvement-content">
+                                                <h4>Job-Specific Relevance</h4>
+                                                <p>Research the specific requirements and challenges of your target role, and tailor your examples to demonstrate directly relevant experience.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feedback-actions">
+                                    <button id="downloadReportBtn" class="btn btn-primary btn-animated">Download Detailed Report</button>
+                                    <button id="practiceAgainBtn" class="btn btn-outline btn-animated">Practice Again</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section bg-light">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Interview Coach Features</h2>
+                    <p>Comprehensive tools to prepare you for successful interviews</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="feature-card reveal-on-scroll" data-reveal-animation="fade-in">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>AI-Powered Feedback</h3>
+                                <p>Receive detailed, personalized feedback on your interview responses from our advanced AI system.</p>
+                                <ul class="feature-list">
+                                    <li>Content analysis</li>
+                                    <li>Structure evaluation</li>
+                                    <li>Improvement suggestions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="feature-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.2">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Industry-Specific Questions</h3>
+                                <p>Practice with questions tailored to your target industry, job level, and position requirements.</p>
+                                <ul class="feature-list">
+                                    <li>15+ industries covered</li>
+                                    <li>Role-specific scenarios</li>
+                                    <li>Regularly updated database</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="feature-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.4">
+                            <div class="feature-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Military-to-Civilian Translation</h3>
+                                <p>Learn how to effectively translate your military experience into terms civilian employers understand.</p>
+                                <ul class="feature-list">
+                                    <li>Terminology guidance</li>
+                                    <li>Skill translation tips</li>
+                                    <li>Civilian equivalents</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="feature-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.6">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Progress Tracking</h3>
+                                <p>Monitor your improvement over time with detailed performance analytics and progress reports.</p>
+                                <ul class="feature-list">
+                                    <li>Performance trends</li>
+                                    <li>Strength identification</li>
+                                    <li>Personalized improvement plan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interview Tips Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Interview Success Tips for Veterans</h2>
+                    <p>Expert advice to help you stand out in civilian job interviews</p>
+                </div>
+                
+                <div class="tips-slider">
+                    <div class="tips-track">
+                        <div class="tip-slide reveal-on-scroll" data-reveal-animation="slide-in">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <h3>Translate Military Jargon</h3>
+                                <p>Avoid military acronyms and terminology that civilian employers may not understand. Practice explaining your experience in civilian-friendly language before your interview.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-slide reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.2">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Use the STAR Method</h3>
+                                <p>Structure your answers using the Situation, Task, Action, Result format to provide clear, concise examples of your accomplishments and skills.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-slide reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.4">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h3>Highlight Transferable Skills</h3>
+                                <p>Emphasize skills like leadership, teamwork, problem-solving, and adaptability that are highly valued in civilian workplaces.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-slide reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.6">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Quantify Your Achievements</h3>
+                                <p>Include specific numbers, percentages, and metrics when describing your accomplishments to demonstrate tangible results.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-slide reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.8">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h3>Research the Company</h3>
+                                <p>Demonstrate your interest by researching the company's mission, values, products, and recent news before your interview.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tips-controls">
+                        <button class="tip-prev" aria-label="Previous tip"><i class="fas fa-chevron-left"></i></button>
+                        <div class="tip-dots"></div>
+                        <button class="tip-next" aria-label="Next tip"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section bg-light">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Success Stories</h2>
+                    <p>Hear from veterans who improved their interview skills with our AI Coach</p>
+                </div>
+                
+                <div class="testimonials-slider">
+                    <div class="testimonial-item active">
+                        <div class="testimonial-content">
+                            <p>"After 12 years in the Marines, I struggled to communicate my experience in civilian interviews. The AI Interview Coach helped me translate my military leadership into terms employers understand. After just a few practice sessions, I felt much more confident and landed a management position at a logistics company."</p>
+                            <div class="testimonial-author">
+                                <img src="../../images/testimonial-1.jpg" alt="James R.">
+                                <div>
+                                    <h4>James R.</h4>
+                                    <p>Former Marine Corps Captain</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>"The feedback on my interview answers was incredibly detailed and helpful. The AI pointed out when I was using too much military jargon and suggested better ways to explain my technical skills. I went from getting rejected after interviews to receiving two job offers in the tech industry."</p>
+                            <div class="testimonial-author">
+                                <img src="../../images/testimonial-2.jpg" alt="Sarah M.">
+                                <div>
+                                    <h4>Sarah M.</h4>
+                                    <p>Former Army IT Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>"What I appreciated most was being able to practice answering difficult questions about my combat experience in a safe environment. The AI Coach helped me frame my overseas deployments in a way that highlighted my adaptability and performance under pressure. This tool was invaluable in my transition."</p>
+                            <div class="testimonial-author">
+                                <img src="../../images/testimonial-3.jpg" alt="Michael T.">
+                                <div>
+                                    <h4>Michael T.</h4>
+                                    <p>Former Navy Petty Officer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-controls">
+                        <button class="testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                        <div class="testimonial-dots">
+                            <span class="testimonial-dot active"></span>
+                            <span class="testimonial-dot"></span>
+                            <span class="testimonial-dot"></span>
+                        </div>
+                        <button class="testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2 class="animate-on-scroll" data-animation="fade-in">Ready to Ace Your Interviews?</h2>
+                    <p class="animate-on-scroll" data-animation="fade-in" data-delay="0.2">Practice with our AI Interview Coach to build confidence and improve your performance.</p>
+                    <div class="cta-buttons animate-on-scroll" data-animation="fade-in" data-delay="0.4">
+                        <a href="#" class="btn btn-primary btn-lg btn-animated scroll-to-top">Start Practicing Now</a>
+                        <a href="../resume_generator/index.html" class="btn btn-outline btn-lg btn-animated">Create Your Resume First</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <img src="../../images/logo-white.png" alt="Veteran Transition Platform Logo">
+                    </div>
+                    <p>Empowering veterans to translate their military experience into successful civilian careers through AI-powered tools and resources.</p>
+                </div>
+                
+                <div class="col-md-2">
+                    <h5>Tools</h5>
+                    <ul class="footer-links">
+                        <li><a href="../skill_translator/index.html">Skill Translator</a></li>
+                        <li><a href="../resume_generator/index.html">Resume Generator</a></li>
+                        <li><a href="../ats_scanner/index.html">ATS Scanner</a></li>
+                        <li><a href="../interview_coach/index.html">Interview Coach</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-2">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="../../about.html">About Us</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                        <li><a href="../../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../../terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4">
+                    <h5>Stay Connected</h5>
+                    <p>Subscribe to our newsletter for the latest updates and resources.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Veteran Transition Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="../../js/animated-dropdowns.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="interview_questions.js"></script>
+    <script src="interview_coach.js"></script>
+</body>
+</html>

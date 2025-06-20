@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Compatibility Scanner | Veteran Transition Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/modern-ui.css">
+    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a href="../../index.html">
+                        <img src="../../images/logo.png" alt="Veteran Transition Platform Logo">
+                        <h1>Veteran Transition Platform</h1>
+                    </a>
+                </div>
+                <button class="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="../../index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active">Tools</a>
+                            <div class="dropdown-menu">
+                                <a href="../skill_translator/index.html" class="dropdown-item">Skill Translator</a>
+                                <a href="../resume_generator/index.html" class="dropdown-item">Resume Generator</a>
+                                <a href="../ats_scanner/index.html" class="dropdown-item active">ATS Scanner</a>
+                                <a href="../interview_coach/index.html" class="dropdown-item">Interview Coach</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../about.html" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../../contact.html" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="tool-hero">
+            <div class="container">
+                <div class="tool-hero-content">
+                    <h1>ATS Compatibility Scanner</h1>
+                    <p>Ensure your resume passes through Applicant Tracking Systems to reach hiring managers</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATS Scanner Section -->
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="ats-scanner-container">
+                            <div class="ats-scanner-upload">
+                                <div class="component-loader">
+                                    <div class="loader-spinner"></div>
+                                </div>
+                                <div class="component-content">
+                                    <div class="upload-area" id="uploadArea">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-file-upload"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <h3>Upload Your Resume</h3>
+                                            <p>Drag and drop your resume file here or click to browse</p>
+                                            <p class="file-types">Supported formats: PDF, DOCX, DOC</p>
+                                        </div>
+                                        <div class="upload-btn">
+                                            <label for="resumeFile" class="btn btn-primary btn-animated">Browse Files</label>
+                                            <input type="file" id="resumeFile" class="file-input" accept=".pdf,.docx,.doc">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-description-input">
+                                        <h3>Job Description</h3>
+                                        <p>Paste the job description to compare against your resume</p>
+                                        <textarea id="jobDescription" placeholder="Paste job description here..."></textarea>
+                                    </div>
+                                    
+                                    <div class="scan-actions">
+                                        <button id="scanButton" class="btn btn-primary btn-lg btn-animated">Scan Resume</button>
+                                    </div>
+                                    
+                                    <div class="scan-progress">
+                                        <h3>Analyzing Resume...</h3>
+                                        <div class="progress-bar-container">
+                                            <div class="progress-bar" id="scanProgressBar"></div>
+                                        </div>
+                                        <p class="scan-status">Checking keyword alignment...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="scan-results" id="scanResults">
+                                <div class="result-header">
+                                    <h2>ATS Compatibility Results</h2>
+                                    <div class="score-gauge" data-score="78">
+                                        <div class="score-gauge-bg"></div>
+                                        <div class="score-gauge-fill"></div>
+                                        <div class="score-gauge-center">
+                                            <div class="score-gauge-value" id="scoreValue">78</div>
+                                        </div>
+                                    </div>
+                                    <p class="score-label">Your ATS Compatibility Score</p>
+                                </div>
+                                
+                                <div class="result-sections">
+                                    <div class="result-section">
+                                        <h3><i class="fas fa-check-circle"></i> Keyword Match</h3>
+                                        <div class="keyword-matches">
+                                            <div class="keyword-match-item">
+                                                <div class="keyword-match-label">Leadership</div>
+                                                <div class="keyword-match-bar">
+                                                    <div class="keyword-match-fill" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="keyword-match-item">
+                                                <div class="keyword-match-label">Project Management</div>
+                                                <div class="keyword-match-bar">
+                                                    <div class="keyword-match-fill" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="keyword-match-item">
+                                                <div class="keyword-match-label">Team Coordination</div>
+                                                <div class="keyword-match-bar">
+                                                    <div class="keyword-match-fill" style="width: 90%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="keyword-match-item">
+                                                <div class="keyword-match-label">Strategic Planning</div>
+                                                <div class="keyword-match-bar">
+                                                    <div class="keyword-match-fill" style="width: 60%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="keyword-match-item">
+                                                <div class="keyword-match-label">Risk Management</div>
+                                                <div class="keyword-match-bar">
+                                                    <div class="keyword-match-fill" style="width: 40%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="result-section">
+                                        <h3><i class="fas fa-file-alt"></i> Format Analysis</h3>
+                                        <ul class="format-analysis-list">
+                                            <li class="format-item success">
+                                                <i class="fas fa-check"></i>
+                                                <div class="format-item-content">
+                                                    <h4>Clean, ATS-friendly format</h4>
+                                                    <p>Your resume uses a simple, scannable format that ATS systems can easily read.</p>
+                                                </div>
+                                            </li>
+                                            <li class="format-item warning">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <div class="format-item-content">
+                                                    <h4>Complex tables detected</h4>
+                                                    <p>Some content is in tables which may not parse correctly in all ATS systems.</p>
+                                                </div>
+                                            </li>
+                                            <li class="format-item success">
+                                                <i class="fas fa-check"></i>
+                                                <div class="format-item-content">
+                                                    <h4>Standard section headings</h4>
+                                                    <p>Your section headings are clear and follow standard conventions.</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="result-section">
+                                        <h3><i class="fas fa-lightbulb"></i> Improvement Suggestions</h3>
+                                        <div class="improvement-suggestions">
+                                            <div class="suggestion-item">
+                                                <h4>Add missing keywords</h4>
+                                                <p>Consider adding these keywords from the job description:</p>
+                                                <div class="missing-keywords">
+                                                    <span class="keyword-tag">Budget Management</span>
+                                                    <span class="keyword-tag">Cross-functional Teams</span>
+                                                    <span class="keyword-tag">Stakeholder Communication</span>
+                                                </div>
+                                            </div>
+                                            <div class="suggestion-item">
+                                                <h4>Simplify formatting</h4>
+                                                <p>Replace tables with simple bullet points to ensure better ATS compatibility.</p>
+                                            </div>
+                                            <div class="suggestion-item">
+                                                <h4>Quantify achievements</h4>
+                                                <p>Add more specific metrics and numbers to highlight your accomplishments.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="result-actions">
+                                    <button id="downloadReportBtn" class="btn btn-primary btn-animated">Download Report</button>
+                                    <button id="scanAnotherBtn" class="btn btn-outline btn-animated">Scan Another Resume</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="section bg-light">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How ATS Scanning Works</h2>
+                    <p>Understanding how employers use Applicant Tracking Systems</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="info-card reveal-on-scroll" data-reveal-animation="fade-in">
+                            <div class="info-card-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h3>What is an ATS?</h3>
+                                <p>Applicant Tracking Systems (ATS) are software used by 98% of Fortune 500 companies to filter resumes before they reach human recruiters. These systems scan for keywords, formatting, and qualifications to determine which candidates move forward.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="info-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.2">
+                            <div class="info-card-icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h3>How ATS Filters Work</h3>
+                                <p>ATS systems parse your resume into searchable fields, looking for specific keywords and phrases that match the job description. Resumes that don't meet a certain threshold of relevance are automatically rejected.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="info-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.4">
+                            <div class="info-card-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h3>Why ATS Optimization Matters</h3>
+                                <p>Up to 75% of qualified candidates are rejected by ATS systems before a human ever sees their resume. Military veterans often use terminology that doesn't align with civilian job descriptions, making ATS optimization especially important.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="info-card reveal-on-scroll" data-reveal-animation="fade-in" data-reveal-delay="0.6">
+                            <div class="info-card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <h3>Improving Your Success Rate</h3>
+                                <p>Our ATS Scanner analyzes your resume against specific job descriptions, providing actionable feedback to increase your chances of getting past automated filters and into the hands of hiring managers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>ATS Optimization Tips</h2>
+                    <p>Expert advice to help your resume pass through ATS filters</p>
+                </div>
+                
+                <div class="tips-container">
+                    <div class="tip-card reveal-on-scroll" data-reveal-animation="slide-in">
+                        <div class="tip-number">01</div>
+                        <h3>Use Standard Section Headings</h3>
+                        <p>Use clear, standard section headings like "Work Experience," "Education," and "Skills" that ATS systems are programmed to recognize.</p>
+                    </div>
+                    
+                    <div class="tip-card reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.2">
+                        <div class="tip-number">02</div>
+                        <h3>Incorporate Relevant Keywords</h3>
+                        <p>Include industry-specific keywords and phrases from the job description, but avoid "keyword stuffing" which can trigger spam filters.</p>
+                    </div>
+                    
+                    <div class="tip-card reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.4">
+                        <div class="tip-number">03</div>
+                        <h3>Avoid Complex Formatting</h3>
+                        <p>Skip tables, headers/footers, text boxes, and graphics. Use simple bullet points and standard fonts that ATS systems can easily parse.</p>
+                    </div>
+                    
+                    <div class="tip-card reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.6">
+                        <div class="tip-number">04</div>
+                        <h3>Use Standard File Formats</h3>
+                        <p>Submit your resume as a .docx or .pdf file, as these formats are most compatible with ATS systems. Avoid image files like .jpg or .png.</p>
+                    </div>
+                    
+                    <div class="tip-card reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.8">
+                        <div class="tip-number">05</div>
+                        <h3>Spell Out Acronyms</h3>
+                        <p>Include both the spelled-out version and the acronym for military terms and industry-specific abbreviations (e.g., "Supply Chain Management (SCM)").</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2 class="animate-on-scroll" data-animation="fade-in">Ready to Optimize Your Resume?</h2>
+                    <p class="animate-on-scroll" data-animation="fade-in" data-delay="0.2">Use our ATS Scanner to ensure your resume gets past automated filters and into the hands of hiring managers.</p>
+                    <div class="cta-buttons animate-on-scroll" data-animation="fade-in" data-delay="0.4">
+                        <a href="#" class="btn btn-primary btn-lg btn-animated scroll-to-top">Scan Your Resume Now</a>
+                        <a href="../resume_generator/index.html" class="btn btn-outline btn-lg btn-animated">Build an ATS-Friendly Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <img src="../../images/logo-white.png" alt="Veteran Transition Platform Logo">
+                    </div>
+                    <p>Empowering veterans to translate their military experience into successful civilian careers through AI-powered tools and resources.</p>
+                </div>
+                
+                <div class="col-md-2">
+                    <h5>Tools</h5>
+                    <ul class="footer-links">
+                        <li><a href="../skill_translator/index.html">Skill Translator</a></li>
+                        <li><a href="../resume_generator/index.html">Resume Generator</a></li>
+                        <li><a href="../ats_scanner/index.html">ATS Scanner</a></li>
+                        <li><a href="../interview_coach/index.html">Interview Coach</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-2">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="../../about.html">About Us</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                        <li><a href="../../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../../terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4">
+                    <h5>Stay Connected</h5>
+                    <p>Subscribe to our newsletter for the latest updates and resources.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                    </form>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Veteran Transition Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="../../js/animated-dropdowns.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="ats_data.js"></script>
+    <script src="ats_scanner.js"></script>
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator - Veteran Transition Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4 mb-5">
+        <h1 class="text-center mb-4">Resume Generator</h1>
+        <p class="text-center lead">Create a professional resume based on your military experience</p>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Step Navigation -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Resume Builder</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="resumeSteps">
+                            <a href="#" class="list-group-item list-group-item-action active" data-step="personal">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">1. Personal Information</h5>
+                                    <span class="badge bg-primary rounded-pill">Current</span>
+                                </div>
+                                <p class="mb-1">Contact details and professional summary</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" data-step="military">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">2. Military Experience</h5>
+                                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                                </div>
+                                <p class="mb-1">Service details and achievements</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" data-step="education">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">3. Education & Training</h5>
+                                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                                </div>
+                                <p class="mb-1">Degrees, certifications, and courses</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" data-step="skills">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">4. Skills & Achievements</h5>
+                                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                                </div>
+                                <p class="mb-1">Technical and soft skills</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action" data-step="template">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">5. Choose Template</h5>
+                                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                                </div>
+                                <p class="mb-1">Design and formatting options</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tips Card -->
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="mb-0">Resume Tips</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="personalTips" class="tips-section">
+                            <h5>Personal Information Tips:</h5>
+                            <ul>
+                                <li>Use a professional email address</li>
+                                <li>Include LinkedIn profile if available</li>
+                                <li>Keep your summary concise (3-5 sentences)</li>
+                                <li>Focus on your strongest qualifications</li>
+                            </ul>
+                        </div>
+                        <div id="militaryTips" class="tips-section d-none">
+                            <h5>Military Experience Tips:</h5>
+                            <ul>
+                                <li>Translate military terms to civilian language</li>
+                                <li>Focus on transferable skills and achievements</li>
+                                <li>Quantify your accomplishments when possible</li>
+                                <li>Highlight leadership and management experience</li>
+                            </ul>
+                        </div>
+                        <div id="educationTips" class="tips-section d-none">
+                            <h5>Education Tips:</h5>
+                            <ul>
+                                <li>List most recent education first</li>
+                                <li>Include relevant military training</li>
+                                <li>Mention specialized certifications</li>
+                                <li>Include GPA if it's 3.5 or higher</li>
+                            </ul>
+                        </div>
+                        <div id="skillsTips" class="tips-section d-none">
+                            <h5>Skills Tips:</h5>
+                            <ul>
+                                <li>Prioritize skills relevant to the job</li>
+                                <li>Include both technical and soft skills</li>
+                                <li>Be specific about technical proficiencies</li>
+                                <li>Highlight leadership and teamwork abilities</li>
+                            </ul>
+                        </div>
+                        <div id="templateTips" class="tips-section d-none">
+                            <h5>Template Tips:</h5>
+                            <ul>
+                                <li>Choose a template appropriate for your target industry</li>
+                                <li>Ensure good readability with proper spacing</li>
+                                <li>Use consistent formatting throughout</li>
+                                <li>Select ATS-friendly templates for online applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <!-- Form Sections -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0" id="currentStepTitle">Personal Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Personal Information Form -->
+                        <div id="personalForm" class="form-section">
+                            <form id="personalInfoForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="jobTitle" class="form-label">Target Job Title</label>
+                                    <input type="text" class="form-control" id="jobTitle" placeholder="e.g., Operations Manager, Security Specialist">
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="city" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="state" class="form-label">State</label>
+                                        <input type="text" class="form-control" id="state" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="linkedin" class="form-label">LinkedIn URL (optional)</label>
+                                    <input type="url" class="form-control" id="linkedin" placeholder="https://www.linkedin.com/in/yourprofile">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="professionalSummary" class="form-label">Professional Summary</label>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="me-2">Import from Skill Translator:</span>
+                                        <button type="button" id="importSummary" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-download"></i> Import
+                                        </button>
+                                    </div>
+                                    <textarea class="form-control" id="professionalSummary" rows="4" placeholder="Brief overview of your experience, skills, and career goals"></textarea>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary" disabled>Previous</button>
+                                    <button type="button" class="btn btn-primary next-step" data-next="military">Next: Military Experience</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Military Experience Form -->
+                        <div id="militaryForm" class="form-section d-none">
+                            <form id="militaryExperienceForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Import from Skill Translator</label>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <button type="button" id="importMilitary" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-download"></i> Import Military Background
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="branchOfService" class="form-label">Branch of Service</label>
+                                        <select class="form-select" id="branchOfService" required>
+                                            <option value="" selected disabled>Select branch</option>
+                                            <option value="Army">Army</option>
+                                            <option value="Navy">Navy</option>
+                                            <option value="Air Force">Air Force</option>
+                                            <option value="Marines">Marines</option>
+                                            <option value="Coast Guard">Coast Guard</option>
+                                            <option value="Space Force">Space Force</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="rank" class="form-label">Highest Rank</label>
+                                        <input type="text" class="form-control" id="rank" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="serviceStart" class="form-label">Service Start Date</label>
+                                        <input type="month" class="form-control" id="serviceStart" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="serviceEnd" class="form-label">Service End Date</label>
+                                        <input type="month" class="form-control" id="serviceEnd" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="primaryRole" class="form-label">Primary Role/MOS</label>
+                                    <input type="text" class="form-control" id="primaryRole" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="responsibilities" class="form-label">Key Responsibilities</label>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Civilian-friendly phrasing will be suggested as you type</small>
+                                    </div>
+                                    <textarea class="form-control" id="responsibilities" rows="4" required></textarea>
+                                    <div id="phrasingSuggestions" class="mt-2 d-none">
+                                        <div class="alert alert-info">
+                                            <strong>Suggested civilian phrasing:</strong>
+                                            <span id="suggestionText"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Achievements</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addAchievement" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Achievement
+                                        </button>
+                                    </div>
+                                    <div id="achievementsContainer">
+                                        <div class="achievement-entry mb-2">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control achievement-input" placeholder="Describe a specific achievement or award">
+                                                <button class="btn btn-outline-secondary achievement-suggestion" type="button">
+                                                    <i class="bi bi-magic"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger achievement-remove" type="button">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="additionalRoles" class="form-label">Additional Roles (Optional)</label>
+                                    <button type="button" id="addRole" class="btn btn-sm btn-outline-primary mb-2">
+                                        <i class="bi bi-plus-circle"></i> Add Another Role
+                                    </button>
+                                    <div id="additionalRolesContainer">
+                                        <!-- Additional roles will be added here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary prev-step" data-prev="personal">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step" data-next="education">Next: Education & Training</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Education Form -->
+                        <div id="educationForm" class="form-section d-none">
+                            <form id="educationTrainingForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Formal Education</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addEducation" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Education
+                                        </button>
+                                    </div>
+                                    <div id="educationContainer">
+                                        <div class="education-entry mb-3 p-3 border rounded">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Institution Name</label>
+                                                    <input type="text" class="form-control" placeholder="University or College Name">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Degree/Diploma</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., Bachelor of Science">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Field of Study</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., Computer Science">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Graduation Date</label>
+                                                    <input type="month" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">GPA (Optional)</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., 3.8">
+                                                </div>
+                                                <div class="col-md-6 d-flex align-items-end">
+                                                    <button type="button" class="btn btn-outline-danger education-remove">
+                                                        <i class="bi bi-trash"></i> Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Military Training</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addMilitaryTraining" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Military Training
+                                        </button>
+                                    </div>
+                                    <div id="militaryTrainingContainer">
+                                        <div class="training-entry mb-3 p-3 border rounded">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Training Name</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., Advanced Leadership Course">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Institution</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., Army Leadership School">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Completion Date</label>
+                                                    <input type="month" class="form-control">
+                                                </div>
+                                                <div class="col-md-6 d-flex align-items-end">
+                                                    <button type="button" class="btn btn-outline-danger training-remove">
+                                                        <i class="bi bi-trash"></i> Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Certifications</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addCertification" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Certification
+                                        </button>
+                                    </div>
+                                    <div id="certificationContainer">
+                                        <div class="certification-entry mb-3 p-3 border rounded">
+                                            <div class="row mb-2">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Certification Name</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., Project Management Professional (PMP)">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Issuing Organization</label>
+                                                    <input type="text" class="form-control" placeholder="e.g., PMI">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Date Obtained</label>
+                                                    <input type="month" class="form-control">
+                                                </div>
+                                                <div class="col-md-6 d-flex align-items-end">
+                                                    <button type="button" class="btn btn-outline-danger certification-remove">
+                                                        <i class="bi bi-trash"></i> Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary prev-step" data-prev="military">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step" data-next="skills">Next: Skills & Achievements</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Skills Form -->
+                        <div id="skillsForm" class="form-section d-none">
+                            <form id="skillsAchievementsForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Import from Skill Translator</label>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <button type="button" id="importSkills" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-download"></i> Import Skills
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Technical Skills</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addTechnicalSkill" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Technical Skill
+                                        </button>
+                                    </div>
+                                    <div id="technicalSkillsContainer">
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="e.g., Project Management">
+                                            <button class="btn btn-outline-danger skill-remove" type="button">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="e.g., Risk Assessment">
+                                            <button class="btn btn-outline-danger skill-remove" type="button">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Soft Skills</label>
+                                    <div class="mb-2">
+                                        <button type="button" id="addSoftSkill" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Soft Skill
+                                        </button>
+                                    </div>
+                                    <div id="softSkillsContainer">
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="e.g., Leadership">
+                                            <button class="btn btn-outline-danger skill-remove" type="button">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="e.g., Problem Solving">
+                                            <button class="btn btn-outline-danger skill-remove" type="button">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Additional Achievements</label>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Include any additional achievements not covered in your military experience</small>
+                                    </div>
+                                    <div class="mb-2">
+                                        <button type="button" id="addAdditionalAchievement" class="btn btn-sm btn-outline-success">
+                                            <i class="bi bi-plus-circle"></i> Add Achievement
+                                        </button>
+                                    </div>
+                                    <div id="additionalAchievementsContainer">
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="Describe a specific achievement">
+                                            <button class="btn btn-outline-danger achievement-remove" type="button">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary prev-step" data-prev="education">Previous</button>
+                                    <button type="button" class="btn btn-primary next-step" data-next="template">Next: Choose Template</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Template Selection Form -->
+                        <div id="templateForm" class="form-section d-none">
+                            <form id="templateSelectionForm">
+                                <div class="mb-4">
+                                    <label class="form-label">Select a Template</label>
+                                    <div class="row" id="templateContainer">
+                                        <!-- Templates will be populated here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">Color Scheme</label>
+                                    <div class="d-flex flex-wrap gap-2" id="colorSchemeContainer">
+                                        <!-- Color options will be populated here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="atsOptimized" checked>
+                                        <label class="form-check-label" for="atsOptimized">
+                                            Optimize for ATS (Applicant Tracking Systems)
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-secondary prev-step" data-prev="skills">Previous</button>
+                                    <button type="button" class="btn btn-success" id="generateResume">Generate Resume</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resume Preview (initially hidden) -->
+                <div id="resumePreview" class="card d-none">
+                    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">Your Resume</h3>
+                        <div>
+                            <button id="downloadResumeBtn" class="btn btn-light me-2">
+                                <i class="bi bi-download"></i> Download PDF
+                            </button>
+                            <button id="editResumeBtn" class="btn btn-light">
+                                <i class="bi bi-pencil"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="resumeContainer" class="p-4 border">
+                            <!-- Resume content will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="resume_generator.js"></script>
+</body>
+</html>

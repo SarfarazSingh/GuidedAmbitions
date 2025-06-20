@@ -1,0 +1,246 @@
+/* Resume Generator Styles */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+/* Step navigation styling */
+.list-group-item.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.list-group-item:hover:not(.active) {
+    background-color: #f8f9fa;
+}
+
+/* Form section transitions */
+.form-section {
+    transition: all 0.3s ease;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Template selection styling */
+.template-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.template-card.selected {
+    border-color: #0d6efd;
+    background-color: #f0f7ff;
+}
+
+.template-preview {
+    height: 200px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Color scheme selection */
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 3px solid transparent;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border-color: #212529;
+}
+
+/* Achievement and skill entry styling */
+.achievement-entry, .skill-entry {
+    transition: all 0.2s ease;
+}
+
+.achievement-entry:hover, .skill-entry:hover {
+    background-color: #f8f9fa;
+}
+
+/* Resume preview styling */
+#resumeContainer {
+    min-height: 500px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Classic template styling */
+.resume-classic {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.resume-classic .resume-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resume-classic .resume-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.resume-classic .resume-contact {
+    font-size: 14px;
+}
+
+.resume-classic .resume-section {
+    margin-bottom: 20px;
+}
+
+.resume-classic .resume-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+/* Modern template styling */
+.resume-modern {
+    font-family: 'Arial', sans-serif;
+}
+
+.resume-modern .resume-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.resume-modern .resume-name {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.resume-modern .resume-contact {
+    text-align: right;
+    font-size: 14px;
+}
+
+.resume-modern .resume-section {
+    margin-bottom: 20px;
+}
+
+.resume-modern .resume-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+/* Executive template styling */
+.resume-executive {
+    font-family: 'Georgia', serif;
+}
+
+.resume-executive .resume-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+
+.resume-executive .resume-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.resume-executive .resume-title {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.resume-executive .resume-contact {
+    font-size: 14px;
+}
+
+.resume-executive .resume-section {
+    margin-bottom: 25px;
+}
+
+.resume-executive .resume-section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Technical template styling */
+.resume-technical {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.resume-technical .resume-header {
+    padding: 15px;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+}
+
+.resume-technical .resume-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.resume-technical .resume-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.resume-technical .resume-contact {
+    font-size: 14px;
+}
+
+.resume-technical .resume-section {
+    margin-bottom: 20px;
+}
+
+.resume-technical .resume-section-title {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .col-md-4, .col-md-8 {
+        margin-bottom: 20px;
+    }
+    
+    .resume-modern .resume-header {
+        flex-direction: column;
+    }
+    
+    .resume-modern .resume-contact {
+        text-align: left;
+        margin-top: 10px;
+    }
+}
