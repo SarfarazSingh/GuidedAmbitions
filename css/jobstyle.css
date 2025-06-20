@@ -1,4 +1,4 @@
-/* jobstyle.css – Enhanced Dynamic UI for Job Identifier */
+/* jobstyle.css – Enhanced Dynamic UI for Job Identifier, aligned with Guided Ambitions branding */
 
 body {
   font-family: 'Inter', sans-serif;
@@ -25,6 +25,18 @@ body {
   margin: 0;
 }
 
+.site-header nav a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.site-header nav a:hover {
+  color: #f1c40f; /* Yellow accent for hover */
+}
+
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -47,8 +59,9 @@ body {
 
 h2 {
   font-family: 'Montserrat', sans-serif;
-  color: #003366;
+  color: #002855;
   margin-bottom: 1rem;
+  font-size: 1.8rem;
 }
 
 .form-group {
@@ -59,6 +72,7 @@ h2 {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  color: #002855;
 }
 
 input, select {
@@ -68,27 +82,30 @@ input, select {
   border: 1px solid #ccc;
   font-size: 1rem;
   transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
 }
 
 input:focus, select:focus {
-  border-color: #0055a5;
+  border-color: #002855;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 85, 165, 0.2);
+  box-shadow: 0 0 0 2px rgba(0, 40, 85, 0.2);
 }
 
 .btn {
-  background: #004080;
-  color: white;
+  background: #f1c40f; /* Yellow button to match branding */
+  color: #002855;
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 .btn:hover {
-  background: #0066cc;
+  background: #f39c12; /* Darker yellow on hover */
 }
 
 .results {
@@ -100,7 +117,7 @@ input:focus, select:focus {
   margin-bottom: 0.5rem;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
-  color: #003366;
+  color: #002855;
 }
 
 .results ul {
@@ -109,15 +126,17 @@ input:focus, select:focus {
 }
 
 .results li {
-  background: #f0f4f9;
+  background: #e9f0f8;
   margin-bottom: 0.5rem;
   padding: 0.75rem 1rem;
   border-radius: 6px;
   transition: transform 0.2s;
+  color: #1c1d1f;
 }
 
 .results li:hover {
   transform: translateX(4px);
+  background: #d5e1f2;
 }
 
 .sector-grid {
@@ -136,10 +155,12 @@ input:focus, select:focus {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: #002855;
+  font-family: 'Inter', sans-serif;
 }
 
 .sector-card:hover {
-  background: #cfe2ff;
+  background: #d5e1f2;
   transform: scale(1.03);
 }
 
@@ -150,6 +171,7 @@ input:focus, select:focus {
   color: #ffffff;
   margin-top: 3rem;
   font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .error-message {
@@ -159,4 +181,5 @@ input:focus, select:focus {
   display: block;
   text-align: center;
   animation: fadeIn 0.3s ease-in-out;
+  font-family: 'Inter', sans-serif;
 }
