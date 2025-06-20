@@ -11,18 +11,7 @@
     <link rel="manifest" href="/manifest.json">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((reg) => console.log("SW registered:", reg))
-        .catch((err) => console.error("SW registration failed:", err));
-    });
-  }
-</script>
-
+ <body>
     <!-- Page Loader -->
     <div class="page-loader">
         <div class="loader-spinner"></div>
@@ -434,5 +423,15 @@
     <!-- Other Scripts -->
     <script src="js/animated-dropdowns.js"></script>
     <script src="js/animations.js"></script>
+      <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((reg) => console.log("SW registered:", reg))
+        .catch((err) => console.error("SW registration failed:", err));
+    });
+  }
+</script>
 </body>
 </html>

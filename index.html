@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/modern-ui.css">
     <link rel="stylesheet" href="css/custom.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <!-- Page Loader -->
@@ -106,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                
                 
                 <!-- Resume Generator -->
                 <div class="col-md-6 col-lg-3 mb-4 animated-item">
@@ -409,5 +411,15 @@
     <!-- Other Scripts -->
     <script src="js/animated-dropdowns.js"></script>
     <script src="js/animations.js"></script>
+      <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((reg) => console.log("SW registered:", reg))
+        .catch((err) => console.error("SW registration failed:", err));
+    });
+  }
+</script>
 </body>
 </html>
