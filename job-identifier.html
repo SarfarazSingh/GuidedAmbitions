@@ -122,20 +122,107 @@
   <div class="job-identifier container">
     <h2>Job Identifier</h2>
     <form id="jobIdentifierForm">
-      <div class="form-group">
-        <label for="militaryRole">Military Role</label>
-        <select id="militaryRole" required>
-          <option value="">Select Role</option>
-          <option value="Logistics Officer">Logistics Officer</option>
-          <option value="Naval Engineer">Naval Engineer</option>
-          <option value="Submarine Radio Operator">Submarine Radio Operator</option>
-          <option value="Radiation Safety Officer">Radiation Safety Officer</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="rank">Rank</label>
-        <input type="text" id="rank" placeholder="e.g., Lt Cdr" required>
-      </div>
+      <!-- Military Role -->
+<div class="form-group">
+  <label for="militaryRole">Military Role</label>
+  <select id="militaryRole" required>
+    <option value="">Select Role</option>
+
+    <!-- Combat & Arms -->
+    <option value="Infantry Officer">Infantry Officer</option>
+    <option value="Armoured Corps Officer">Armoured Corps Officer</option>
+    <option value="Artillery Officer">Artillery Officer</option>
+    <option value="Air Defence Officer">Air Defence Officer</option>
+    <option value="Special Forces Operator">Special Forces Operator</option>
+
+    <!-- Logistics & Supply -->
+    <option value="Logistics Officer">Logistics Officer</option>
+    <option value="Supply Chain Supervisor">Supply Chain Supervisor</option>
+    <option value="Mov & Transportation Officer">Movement & Transportation Officer</option>
+
+    <!-- Engineering / Technical -->
+    <option value="Naval Engineer">Naval Engineer</option>
+    <option value="Marine Engineer">Marine Engineer</option>
+    <option value="Aviation Maintenance Officer">Aviation Maintenance Officer</option>
+    <option value="Combat Engineer">Combat Engineer</option>
+    <option value="Signals / Communications Officer">Signals / Communications Officer</option>
+    <option value="Cyber Operations Specialist">Cyber Operations Specialist</option>
+    <option value="Submarine Radio Operator">Submarine Radio Operator</option>
+
+    <!-- Safety / Medical / Misc -->
+    <option value="Radiation Safety Officer">Radiation Safety Officer</option>
+    <option value="Health Services Officer">Health Services Officer</option>
+    <option value="Military Police">Military Police</option>
+    <option value="Intelligence Officer">Intelligence Officer</option>
+  </select>
+</div>
+
+     <!-- Rank -->
+<div class="form-group">
+  <label for="rank">Rank</label>
+  <select id="rank" required>
+    <option value="">Select Rank</option>
+
+    <!-- Army -->
+    <optgroup label="Indian Army">
+      <option value="Sepoy">Sepoy</option>
+      <option value="Lance Naik">Lance Naik</option>
+      <option value="Naik">Naik</option>
+      <option value="Havildar">Havildar</option>
+      <option value="Naib Subedar">Naib Subedar</option>
+      <option value="Subedar">Subedar</option>
+      <option value="Subedar Major">Subedar Major</option>
+      <option value="Lieutenant">Lieutenant</option>
+      <option value="Captain">Captain</option>
+      <option value="Major">Major</option>
+      <option value="Lieutenant Colonel">Lieutenant Colonel</option>
+      <option value="Colonel">Colonel</option>
+      <option value="Brigadier">Brigadier</option>
+      <option value="Major General">Major General</option>
+      <option value="Lieutenant General">Lieutenant General</option>
+      <option value="General">General</option>
+    </optgroup>
+
+    <!-- Navy -->
+    <optgroup label="Indian Navy">
+      <option value="Seaman">Seaman</option>
+      <option value="Leading Seaman">Leading Seaman</option>
+      <option value="Petty Officer">Petty Officer</option>
+      <option value="Chief Petty Officer">Chief Petty Officer</option>
+      <option value="Master Chief Petty Officer">Master Chief Petty Officer</option>
+      <option value="Sub Lieutenant">Sub Lieutenant</option>
+      <option value="Lieutenant (N)">Lieutenant (N)</option>
+      <option value="Lieutenant Commander">Lieutenant Commander</option>
+      <option value="Commander">Commander</option>
+      <option value="Captain (N)">Captain (N)</option>
+      <option value="Commodore">Commodore</option>
+      <option value="Rear Admiral">Rear Admiral</option>
+      <option value="Vice Admiral">Vice Admiral</option>
+      <option value="Admiral">Admiral</option>
+    </optgroup>
+
+    <!-- Air Force -->
+    <optgroup label="Indian Air Force">
+      <option value="Aircraftsman">Aircraftsman</option>
+      <option value="Leading Aircraftsman">Leading Aircraftsman</option>
+      <option value="Corporal">Corporal</option>
+      <option value="Sergeant">Sergeant</option>
+      <option value="Junior Warrant Officer">Junior Warrant Officer</option>
+      <option value="Warrant Officer">Warrant Officer</option>
+      <option value="Master Warrant Officer">Master Warrant Officer</option>
+      <option value="Flying Officer">Flying Officer</option>
+      <option value="Flight Lieutenant">Flight Lieutenant</option>
+      <option value="Squadron Leader">Squadron Leader</option>
+      <option value="Wing Commander">Wing Commander</option>
+      <option value="Group Captain">Group Captain</option>
+      <option value="Air Commodore">Air Commodore</option>
+      <option value="Air Vice Marshal">Air Vice Marshal</option>
+      <option value="Air Marshal">Air Marshal</option>
+      <option value="Air Chief Marshal">Air Chief Marshal</option>
+    </optgroup>
+  </select>
+</div>
+
       <div class="form-group">
         <label for="specialization">Specialization</label>
         <input type="text" id="specialization" placeholder="e.g., Radiation Safety" required>
@@ -196,7 +283,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-    import { JobIdentifier } from "./job-identifier.js"; // Changed to named import
+    import JobIdentifier from "./job-identifier.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
