@@ -101,6 +101,11 @@
     .sector-card:hover {
       background: #e0e7ff;
     }
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -177,6 +182,7 @@
       <div class="sector-card" data-sector="Defense">Defense</div>
       <!-- Add more sectors from PDF -->
     </div>
+    <p id="firebaseError" class="error-message" style="display: none;"></p>
   </div>
 
   <footer class="footer">
@@ -186,9 +192,9 @@
   </footer>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
     import JobIdentifier from "./job-identifier.js";
 
     const firebaseConfig = {
@@ -200,17 +206,33 @@
       appId: "1:649635260587:web:486e5d09a020c3dee6efee"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    let app, auth, db;
+    try {
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+    } catch (error) {
+      console.error("Firebase initialization error:", error);
+      const firebaseError = document.getElementById("firebaseError");
+      firebaseError.textContent = "Failed to connect to services. Please try again later.";
+      firebaseError.style.display = "block";
+      return;
+    }
 
     // Redirect unauthenticated users
     onAuthStateChanged(auth, (user) => {
       if (!user) {
+        console.log("No user authenticated, redirecting to login.html");
         window.location.replace("login.html");
       } else {
+        console.log("User authenticated:", user.uid);
         initJobIdentifier(user.uid);
       }
+    }, (error) => {
+      console.error("Auth state change error:", error);
+      const firebaseError = document.getElementById("firebaseError");
+      firebaseError.textContent = "Authentication error. Please try again.";
+      firebaseError.style.display = "block";
     });
 
     function initJobIdentifier(userId) {
@@ -233,50 +255,57 @@
         const skills = document.getElementById("skills").value.split(",").map(s => s.trim()).filter(s => s);
         const experience = parseInt(document.getElementById("experience").value) || 0;
 
-        // Map military role
-        const roleData = jobIdentifier.mapMilitaryRole(militaryRole, rank, specialization);
+        try {
+          // Map military role
+          const roleData = jobIdentifier.mapMilitaryRole(militaryRole, rank, specialization);
 
-        // Align industries
-        const matchedIndustries = jobIdentifier.alignIndustries(roleData, {
-          location,
-          remoteWork,
-          skills,
-          experience
-        });
+          // Align industries
+          const matchedIndustries = jobIdentifier.alignIndustries(roleData, {
+            location,
+            remoteWork,
+            skills,
+            experience
+          });
 
-        // Recommend companies
-        const recommendedCompanies = jobIdentifier.recommendCompanies(matchedIndustries, {
-          country: location.toLowerCase().includes("india") ? "India" : "",
-          companyType: ""
-        });
+          // Recommend companies
+          const recommendedCompanies = jobIdentifier.recommendCompanies(matchedIndustries, {
+            country: location.toLowerCase().includes("india") ? "India" : "",
+            companyType: ""
+          });
 
-        // Display results
-        civilianRoles.innerHTML = roleData.civilianRoles.map(r => `<li>${r}</li>`).join("");
-        industries.innerHTML = matchedIndustries.map(i => `<li>${i}</li>`).join("");
-        companies.innerHTML = recommendedCompanies.map(c => `<li>${c.name} (${c.sector}) - Veteran Score: ${c.veteranFriendlinessScore.toFixed(1)}</li>`).join("");
-        results.style.display = "block";
+          // Display results
+          civilianRoles.innerHTML = roleData.civilianRoles.map(r => `<li>${r}</li>`).join("");
+          industries.innerHTML = matchedIndustries.map(i => `<li>${i}</li>`).join("");
+          companies.innerHTML = recommendedCompanies.map(c => `<li>${c.name} (${c.sector}) - Veteran Score: ${c.veteranFriendlinessScore.toFixed(1)}</li>`).join("");
+          results.style.display = "block";
 
-        // Save profile
-        saveProfileBtn.addEventListener("click", async () => {
-          const profileData = {
-            militaryRole,
-            rank,
-            specialization,
-            civilianRoles: roleData.civilianRoles,
-            industries: matchedIndustries,
-            companies: recommendedCompanies.map(c => c.name),
-            filters: { location, remoteWork, skills, experience },
-            timestamp: new Date().toISOString()
-          };
-          const saved = await jobIdentifier.saveProfile(profileData);
-          alert(saved ? "Profile saved!" : "Error saving profile.");
-        }, { once: true });
+          // Save profile
+          saveProfileBtn.addEventListener("click", async () => {
+            const profileData = {
+              militaryRole,
+              rank,
+              specialization,
+              civilianRoles: roleData.civilianRoles,
+              industries: matchedIndustries,
+              companies: recommendedCompanies.map(c => c.name),
+              filters: { location, remoteWork, skills, experience },
+              timestamp: new Date().toISOString()
+            };
+            const saved = await jobIdentifier.saveProfile(profileData);
+            alert(saved ? "Profile saved!" : "Error saving profile.");
+          }, { once: true });
 
-        // Resume integration
-        generateResumeBtn.addEventListener("click", () => {
-          const resumeData = jobIdentifier.generateResumeData(roleData, recommendedCompanies);
-          localStorage.setItem("resumeData", JSON.stringify(resumeData));
-        }, { once: true });
+          // Resume integration
+          generateResumeBtn.addEventListener("click", () => {
+            const resumeData = jobIdentifier.generateResumeData(roleData, recommendedCompanies);
+            localStorage.setItem("resumeData", JSON.stringify(resumeData));
+          }, { once: true });
+        } catch (error) {
+          console.error("Job Identifier error:", error);
+          const firebaseError = document.getElementById("firebaseError");
+          firebaseError.textContent = "Error processing request. Please try again.";
+          firebaseError.style.display = "block";
+        }
       });
 
       // Sector browsing

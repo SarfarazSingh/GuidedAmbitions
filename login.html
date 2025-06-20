@@ -1,445 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Login to Guided Ambitions - Veteran Transition Platform">
-  <title>Login | Guided Ambitions - Veteran Transition Platform</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/modern-ui.css">
-  <link rel="stylesheet" href="css/custom.css">
-  <!-- Use Font Awesome CDN to avoid CORS issues -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
-  <style>
-    :root {
-      --primary-color: #004080;
-      --primary-hover: #0055a5;
-      --error-color: #dc3545;
-      --border-color: #ccc;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f5f8fa;
-      min-height: 100vh;
-      margin: 0;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .site-header {
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-    }
-
-    .site-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .navbar-brand img {
-      height: 40px;
-    }
-
-    .navbar-brand h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      color: #333;
-      margin: 0;
-    }
-
-    .login-container {
-      background: #ffffff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      margin: auto;
-    }
-
-    .login-container h2 {
-      font-family: 'Montserrat', sans-serif;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      font-size: 1.75rem;
-      color: #333;
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-      position: relative;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-
-    .password-container {
-      position: relative;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #666;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--primary-color);
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn:hover:not(:disabled) {
-      background-color: var(--primary-hover);
-    }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .error-message {
-      color: var(--error-color);
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      display: none;
-    }
-
-    .forgot-password, .signup-link {
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    .forgot-password a, .signup-link a {
-      color: var(--primary-color);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .forgot-password a:hover, .signup-link a:hover {
-      text-decoration: underline;
-    }
-
-    .footer {
-      margin-top: auto;
-      background-color: #333;
-      color: #fff;
-      padding: 1rem 0;
-      text-align: center;
-    }
-
-    .footer .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-links li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .footer-links li a:hover {
-      text-decoration: underline;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      color: #fff;
-      font-size: 1.2rem;
-    }
-
-    .social-links a:hover {
-      color: var(--primary-hover);
-    }
-
-    @media (max-width: 480px) {
-      .login-container {
-        padding: 1.5rem;
-      }
-
-      .navbar-brand h1 {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guided Ambitions - Veteran Transition Platform Dashboard">
+    <title>Dashboard | Guided Ambitions - Veteran Transition Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/modern-ui.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="navbar-brand">
-        <img src="images/logo.png" alt="Veteran Transition Platform Logo">
-        <h1>Guided Ambitions - Veteran Transition Platform</h1>
-      </div>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
     </div>
-  </header>
 
-  <!-- Login Form -->
-  <div class="login-container">
-    <h2>Veteran Login</h2>
-    <form id="loginForm" novalidate>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required aria-describedby="emailError" />
-        <p id="emailError" class="error-message"></p>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="password-container">
-          <input type="password" id="password" placeholder="Enter your password" required aria-describedby="passwordError" />
-          <span class="toggle-password" role="button" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></span>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <img src="images/logo.png" alt="Veteran Transition Platform Logo">
+                    <h1>Guided Ambitions - Veteran Transition Platform</h1>
+                </div>
+                <button class="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link active">Dashboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle">Tools</a>
+                            <div class="dropdown-menu">
+                                <a href="components/skill_translator/index.html" class="dropdown-item">Skill Translator</a>
+                                <a href="components/resume_generator/index.html" class="dropdown-item">Resume Generator</a>
+                                <a href="components/ats_scanner/index.html" class="dropdown-item">ATS Scanner</a>
+                                <a href="components/interview_coach/index.html" class="dropdown-item">Interview Coach</a>
+                                <a href="job-identifier.html" class="dropdown-item">Job Identifier</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="logoutBtn" class="btn btn-outline" aria-label="Logout">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-        <p id="passwordError" class="error-message"></p>
-      </div>
-      <button type="submit" class="btn" id="loginBtn">Login</button>
-      <p id="loginError" class="error-message"></p>
-      <div class="forgot-password">
-        <a href="#" id="forgotPassword">Forgot Password?</a>
-      </div>
-      <div class="signup-link">
-        <a href="signup.html">Don't have an account? Sign Up</a>
-      </div>
-    </form>
-  </div>
+    </header>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <ul class="footer-links">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-      <p>© 2025 Veteran Transition Platform. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="typing-animation" data-typing-speed="70">Welcome Back, Veteran!</h1>
+                <p class="animate-on-scroll" data-animation="fade-in" data-delay="0.3">Access our AI-powered tools to translate your military skills, build professional resumes, ace interviews, and launch your civilian career.</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn btn-primary btn-animated">Explore Tools</a>
+                    <a href="about.html" class="btn btn-outline btn-animated">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image parallax" data-parallax-speed="0.2">
+            <img src="images/veteran_transition_hero.jpg" alt="Veteran transitioning to civilian career" class="zoom-on-hover">
+        </div>
+    </section>
 
-  <!-- Firebase Scripts -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    <!-- Features Section -->
+    <section id="features" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Career Tools for Veterans</h2>
+                <p>Everything you need to successfully transition from military to civilian career</p>
+            </div>
+            
+            <div class="row animated-list">
+                <!-- Skill Translator -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/skill_translator_feature.jpg" alt="Military to Civilian Skill Translation" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Skill Translator</h3>
+                            <p class="card-text">Convert your military experience into civilian terms that employers understand and value.</p>
+                            <ul class="feature-list">
+                                <li>Military-to-civilian job mapping</li>
+                                <li>Transferable skills identification</li>
+                                <li>Industry recommendations</li>
+                            </ul>
+                            <a href="components/skill_translator/index.html" class="btn btn-primary btn-animated">Translate Skills</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resume Generator -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/resume_generator_feature.jpg" alt="Professional Resume Builder" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Resume Generator</h3>
+                            <p class="card-text">Create professional, ATS-friendly resumes tailored to your target civilian roles.</p>
+                            <ul class="feature-list">
+                                <li>Step-by-step builder</li>
+                                <li>Military-to-civilian phrasing</li>
+                                <li>Multiple professional templates</li>
+                            </ul>
+                            <a href="components/resume_generator/index.html" class="btn btn-primary btn-animated">Build Resume</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ATS Scanner -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/ats_scanner_feature.jpg" alt="ATS Compatibility Scanner" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">ATS Scanner</h3>
+                            <p class="card-text">Ensure your resume passes through Applicant Tracking Systems to reach hiring managers.</p>
+                            <ul class="feature-list">
+                                <li>Keyword optimization</li>
+                                <li>Format compatibility check</li>
+                                <li>Improvement suggestions</li>
+                            </ul>
+                            <a href="components/ats_scanner/index.html" class="btn btn-primary btn-animated">Scan Resume</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interview Coach -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/interview_coach_feature.jpg" alt="AI Interview Coach" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Interview Coach</h3>
+                            <p class="card-text">Practice interviews with AI feedback to build confidence and improve your responses.</p>
+                            <ul class="feature-list">
+                                <li>Industry-specific questions</li>
+                                <li>Real-time feedback</li>
+                                <li>Performance analytics</li>
+                            </ul>
+                            <a href="components/interview_coach/index.html" class="btn btn-primary btn-animated">Practice Interview</a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Job Identifier -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/job_identifier_feature.jpg" alt="Job Identifier Tool" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Job Identifier</h3>
+                            <p class="card-text">Map your military role to civilian jobs, industries, and top companies tailored to your skills.</p>
+                            <ul class="feature-list">
+                                <li>Military-to-civilian role mapping</li>
+                                <li>Industry and company recommendations</li>
+                                <li>Resume keyword integration</li>
+                            </ul>
+                            <a href="job-identifier.html" class="btn btn-primary btn-animated">Find Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
-      authDomain: "veteranplatform-e1e5c.firebaseapp.com",
-      projectId: "veteranplatform-e1e5c",
-      storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
-      messagingSenderId: "649635260587",
-      appId: "1:649635260587:web:486e5d09a020c3dee6efee"
-    };
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Your journey from military service to civilian success</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.1">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Step 1: Translate Your Skills</h3>
+                        <p>Enter your military background, rank, and specializations to discover equivalent civilian roles and transferable skills.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.2">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Step 2: Build Your Resume</h3>
+                        <p>Create a professional resume using our templates and AI-powered suggestions tailored to your target industry.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.3">
+                    <div class="timeline-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Step 3: Optimize for ATS</h3>
+                        <p>Scan your resume against job descriptions to ensure it passes through Applicant Tracking Systems.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.4">
+                    <div class="timeline-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Step 4: Practice Interviews</h3>
+                        <p>Prepare for interviews with our AI coach that provides feedback on your responses and body language.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.5">
+                    <div class="timeline-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Step 5: Land Your Civilian Job</h3>
+                        <p>Apply with confidence and showcase your valuable military experience in terms employers understand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    <!-- Testimonials Section -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from veterans who successfully transitioned to civilian careers</p>
+            </div>
+            
+            <div class="testimonials-carousel">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"After 12 years in the Army, I struggled to explain my leadership experience to civilian employers. The Skill Translator helped me convert my military achievements into terms that resonated with hiring managers."</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-1.jpg" alt="Ashutosh Sharma, Indian Army Major">
+                            <div>
+                                <h4>Ashutosh Sharma</h4>
+                                <p>Former Army Major, now Operations Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"The ATS Scanner was a game-changer. My applications were getting lost in the system until I optimized my resume with this tool. I received three interview requests within a week!"</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-2.jpg" alt="Sarata Mahale, Indian Naval Lieutenant Commander">
+                            <div>
+                                <h4>Sarata Mahale</h4>
+                                <p>Former Navy Lieutenant Commander, now Project Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"The Interview Coach helped me prepare for behavioral questions I hadn't anticipated. The feedback on my communication style was invaluable and gave me the confidence to ace my interviews."</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-3.jpg" alt="Mithun Mishra, Wing Commander">
+                            <div>
+                                <h4>Mithun Mishra</h4>
+                                <p>Former Indian Air Force Officer, now Security Consultant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-controls">
+                <button class="testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots"></div>
+                <button class="testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
 
-    const loginForm = document.getElementById("loginForm");
-    const loginBtn = document.getElementById("loginBtn");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const loginError = document.getElementById("loginError");
-    const emailError = document.getElementById("emailError");
-    const passwordError = document.getElementById("passwordError");
-    const togglePassword = document.querySelector(".toggle-password");
-    const forgotPassword = document.getElementById("forgotPassword");
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2 class="animate-on-scroll" data-animation="fade-in">Ready to advance your civilian career?</h2>
+                <p class="animate-on-scroll" data-animation="slide-in" data-delay="0.2">Our comprehensive tools are designed specifically for veterans transitioning to civilian careers.</p>
+                <div class="cta-buttons animate-on-scroll" data-animation="fade-in" data-delay="0.4">
+                    <a href="components/skill_translator/index.html" class="btn btn-primary btn-lg btn-animated">Get Started Now</a>
+                    <a href="about.html" class="btn btn-outline btn-lg btn-animated">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    let isSubmitting = false;
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Veteran Transition Platform Logo">
+                        <p>Empowering veterans to transition successfully to civilian careers through innovative tools and resources.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Platform</h5>
+                    <ul class="footer-links">
+                        <li><a href="components/skill_translator/index.html">Skill Translator</a></li>
+                        <li><a href="components/resume_generator/index.html">Resume Generator</a></li>
+                        <li><a href="components/ats_scanner/index.html">ATS Scanner</a></li>
+                        <li><a href="components/interview_coach/index.html">Interview Coach</a></li>
+                        <li><a href="job-identifier.html">Job Identifier</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Stay Updated</h5>
+                    <p>Subscribe to our newsletter for the latest updates and resources.</p>
+                    <div class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your email address" disabled>
+                            <button type="submit" class="btn btn-primary" disabled>Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Veteran Transition Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    // Redirect authenticated users to index.html
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("User already logged in, redirecting to index.html");
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("index.html");
-      }
-    });
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    // Basic input sanitization
-    const sanitizeInput = (input) => {
-      const div = document.createElement("div");
-      div.textContent = input;
-      return div.innerHTML;
-    };
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-    // Password visibility toggle
-    togglePassword.addEventListener("click", () => {
-      const type = passwordInput.type === "password" ? "text" : "password";
-      passwordInput.type = type;
-      togglePassword.innerHTML = type === "password" ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-    });
+        const firebaseConfig = {
+            apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
+            authDomain: "veteranplatform-e1e5c.firebaseapp.com",
+            projectId: "veteranplatform-e1e5c",
+            storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
+            messagingSenderId: "649635260587",
+            appId: "1:649635260587:web:486e5d09a020c3dee6efee"
+        };
 
-    // Form validation
-    const validateForm = () => {
-      let isValid = true;
-      emailError.textContent = "";
-      passwordError.textContent = "";
-      loginError.textContent = "";
-      
-      const email = sanitizeInput(emailInput.value.trim());
-      const password = passwordInput.value.trim();
-
-      if (!email) {
-        emailError.textContent = "Email is required";
-        emailError.style.display = "block";
-        isValid = false;
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailError.textContent = "Please enter a valid email";
-        emailError.style.display = "block";
-        isValid = false;
-      }
-
-      if (!password) {
-        passwordError.textContent = "Password is required";
-        passwordError.style.display = "block";
-        isValid = false;
-      } else if (password.length < 6) {
-        passwordError.textContent = "Password must be at least 6 characters";
-        passwordError.style.display = "block";
-        isValid = false;
-      }
-
-      return isValid;
-    };
-
-    // Login form submission
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (isSubmitting || !validateForm()) return;
-
-      isSubmitting = true;
-      loginBtn.disabled = true;
-      loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-      loginError.style.display = "none";
-
-      try {
-        const email = sanitizeInput(emailInput.value.trim());
-        const password = passwordInput.value.trim();
-        
-        console.log("Attempting login with email:", email);
-        await signInWithEmailAndPassword(auth, email, password);
-        console.log("Login successful, setting localStorage and redirecting");
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("index.html");
-      } catch (error) {
-        console.error("Login error:", error.code, error.message);
-        loginError.style.display = "block";
-        switch (error.code) {
-          case "auth/user-not-found":
-            loginError.textContent = "No account found with this email.";
-            break;
-          case "auth/wrong-password":
-            loginError.textContent = "Incorrect password. Please try again.";
-            break;
-          case "auth/too-many-requests":
-            loginError.textContent = "Too many attempts. Please try again later.";
-            break;
-          case "auth/invalid-credential":
-            loginError.textContent = "Invalid email or password.";
-            break;
-          default:
-            loginError.textContent = `Login failed: ${error.message}`;
+        let app, auth;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+            document.body.innerHTML += '<p style="color: red; text-align: center;">Failed to connect to services. Please try again later.</p>';
+            return;
         }
-      } finally {
-        isSubmitting = false;
-        loginBtn.disabled = false;
-        loginBtn.textContent = "Login";
-      }
-    });
 
-    // Forgot password functionality
-    forgotPassword.addEventListener("click", async (e) => {
-      e.preventDefault();
-      const email = sanitizeInput(emailInput.value.trim());
-      
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        loginError.textContent = "Please enter a valid email to reset your password.";
-        loginError.style.display = "block";
-        return;
-      }
+        // Check auth state
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                console.log("No user authenticated, redirecting to login.html");
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "login.html";
+            } else {
+                console.log("User authenticated:", user.uid);
+            }
+        }, (error) => {
+            console.error("Auth state change error:", error);
+            document.body.innerHTML += '<p style="color: red; text-align: center;">Authentication error. Please try again.</p>';
+        });
 
-      try {
-        console.log("Sending password reset email to:", email);
-        await sendPasswordResetEmail(auth, email);
-        loginError.textContent = "Password reset email sent. Check your inbox.";
-        loginError.style.color = "#28a745";
-        loginError.style.display = "block";
-      } catch (error) {
-        console.error("Password reset error:", error.code, error.message);
-        loginError.style.color = "#dc3545";
-        loginError.textContent = "Error sending reset email. Please try again.";
-        loginError.style.display = "block";
-      }
-    });
+        // Logout functionality
+        const logoutBtn = document.getElementById("logoutBtn");
+        logoutBtn.addEventListener("click", async () => {
+            try {
+                await signOut(auth);
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = "login.html";
+            } catch (error) {
+                console.error("Logout error:", error);
+            }
+        });
+    </script>
 
-    // Real-time validation
-    emailInput.addEventListener("input", validateForm);
-    passwordInput.addEventListener("input", validateForm);
-  </script>
+    <!-- Other Scripts -->
+    <script src="js/animated-dropdowns.js"></script>
+    <script src="js/animations.js"></script>
 </body>
-</html> 
+</html>
