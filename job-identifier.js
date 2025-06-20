@@ -1,107 +1,186 @@
-const companyData = [
-  { name: "Accenture", sector: "Consulting", country: "India", veteranFriendlinessScore: 8.5 },
-  { name: "Tata Consultancy Services", sector: "Technology", country: "India", veteranFriendlinessScore: 7.8 },
-  { name: "Hindustan Unilever", sector: "FMCG", country: "India", veteranFriendlinessScore: 7.2 },
-  { name: "Amazon", sector: "Technology", country: "India", veteranFriendlinessScore: 8.0 },
-  { name: "Deloitte", sector: "Consulting", country: "India", veteranFriendlinessScore: 8.3 },
-  // Add more companies from PDF
-];
+// job-identifier.js – v2.0
+// ------------------------------------------------------------
+// This module powers the **Job Identifier** feature.
+// * Pulls in the master company catalog (auto‑generated from the PDF)
+// * Converts Indian Armed Forces roles & ranks → civilian language
+// * Recommends industries / companies filtered by location, skills, etc.
+// ------------------------------------------------------------
 
-const roleMappings = {
+/* ------------------------------------------------------------------
+   Data imports                                                        
+   ------------------------------------------------------------------ */
+// 1. `companyData`  – exhaustive list of companies scraped from the PDF
+//                    [{ name, sector, country, veteranFriendlinessScore }]
+//    ‑> kept in a separate module so this file stays readable.
+import { companyData } from "./data/companyData.js";
+
+// 2.  `rankLevels`   – maps every rank across Army / Navy / Air‑Force to
+//                      both a numeric seniority level *and* a civilian
+//                      seniority label (Associate, Manager, Director …)
+import { rankLevels }  from "./data/rankLevels.js";
+
+/* ------------------------------------------------------------------
+   Role mappings                                                       
+   ------------------------------------------------------------------ */
+// A *compact* mapping between common military functional roles and
+// (a) equivalent civilian job families  (b) industries  (c) keywords.
+// NOTE: If you need to add a new military role just drop a new object
+//       in here – the UI will pick it up automatically.
+export const roleMappings = {
+  /** Logistics & Supply */
   "Logistics Officer": {
     civilianRoles: ["Supply Chain Manager", "Logistics Coordinator", "Operations Manager"],
-    industries: ["Logistics", "Manufacturing", "Retail"],
-    keywords: ["supply chain", "inventory", "operations"]
+    industries: ["Logistics", "Manufacturing", "Retail", "E‑Commerce"],
+    keywords: ["supply chain", "inventory", "operations", "warehouse"]
   },
+  /** Engineering */
   "Naval Engineer": {
-    civilianRoles: ["Mechanical Engineer", "Project Engineer", "Maintenance Manager"],
-    industries: ["Engineering", "Defense", "Manufacturing"],
+    civilianRoles: ["Mechanical Engineer", "Maintenance Manager", "Project Engineer"],
+    industries: ["Maritime", "Oil & Gas", "Engineering", "Defense"],
     keywords: ["engineering", "maintenance", "project management"]
   },
+  /** Communications & IT */
   "Submarine Radio Operator": {
     civilianRoles: ["Communications Specialist", "Network Technician", "IT Support"],
     industries: ["Telecommunications", "Technology", "Defense"],
-    keywords: ["communications", "network", "technical support"]
+    keywords: ["communications", "network", "signal", "technical support"]
   },
+  /** Health & Safety */
   "Radiation Safety Officer": {
-    civilianRoles: ["Health and Safety Specialist", "Environmental Compliance Officer", "Radiation Protection Technician"],
-    industries: ["Healthcare", "Energy", "Defense"],
-    keywords: ["safety", "compliance", "radiation protection"]
+    civilianRoles: ["EHS Specialist", "Radiation Protection Technician", "HSE Manager"],
+    industries: ["Healthcare", "Energy", "Research"],
+    keywords: ["safety", "compliance", "radiation"]
   }
-  // Add more mappings from PDF
+  // 👉🏽  add more functional roles here as required.
 };
 
-class JobIdentifier {
-  constructor(userId) {
+/* ------------------------------------------------------------------
+   Helper utilities                                                    
+   ------------------------------------------------------------------ */
+/**
+ * Normalise an armed‑forces rank to an internal seniority object.
+ * @param {string} rank  e.g. "Lt Cdr" | "Subedar Major"
+ * @returns {{ level:number, label:string }}
+ */
+function parseRank(rank) {
+  const normalised = rank.trim().replace(/\./g, "");
+  return rankLevels[normalised] ?? { level: 1, label: "Associate" };
+}
+
+/**
+ * Upgrade civilian role titles with a seniority prefix derived from rank.
+ */
+function prefixRoles(civilianRoles, seniorityLabel) {
+  return civilianRoles.map(r => `${seniorityLabel} ${r}`);
+}
+
+/* ------------------------------------------------------------------
+   Main class                                                          
+   ------------------------------------------------------------------ */
+export default class JobIdentifier {
+  constructor(userId, db) {
     this.userId = userId;
-    this.db = null;
+    this.db = db; // <-- supply firebase db instance from caller
   }
 
-  initializeFirestore() {
-    if (!this.db) {
-      this.db = firebase.firestore();
-    }
-  }
-
-  mapMilitaryRole(militaryRole, rank, specialization) {
+  /* --------------------------------------------
+     1) Map military role -> civilian blueprint
+     -------------------------------------------- */
+  mapMilitaryRole(militaryRole, rank, specialization = "") {
     const mapping = roleMappings[militaryRole] || {
       civilianRoles: ["General Manager"],
       industries: ["General"],
       keywords: ["management"]
     };
+
+    const { level, label } = parseRank(rank);
+    const civilianRoles = prefixRoles(mapping.civilianRoles, label);
+
     return {
       ...mapping,
+      civilianRoles,
+      seniorityLevel: level,
       rank,
       specialization
     };
   }
 
-  alignIndustries(roleData, filters) {
-    let industries = roleData.industries;
-    if (filters.location) {
-      industries = industries.filter(industry => {
-        return companyData.some(c => c.sector === industry && (!filters.location || c.country.toLowerCase().includes(filters.location.toLowerCase())));
-      });
+  /* --------------------------------------------
+     2) Narrow down industries                    
+     -------------------------------------------- */
+  alignIndustries(roleData, { location = "", remoteWork, skills = [], experience = 0 } = {}) {
+    let industries = [...roleData.industries];
+
+    // 2a) filter by location
+    if (location) {
+      industries = industries.filter(ind =>
+        companyData.some(c => c.sector === ind && c.country.toLowerCase().includes(location.toLowerCase()))
+      );
     }
-    if (filters.remoteWork) {
-      industries = industries.filter(industry => companyData.some(c => c.sector === industry));
+
+    // 2b) filter by skill keywords
+    if (skills.length) {
+      industries = industries.filter(ind =>
+        roleData.keywords.some(k => skills.map(s => s.toLowerCase()).includes(k))
+      );
     }
-    if (filters.skills && filters.skills.length) {
-      industries = industries.filter(industry => {
-        return roleData.keywords.some(keyword => filters.skills.includes(keyword));
-      });
-    }
-    return industries.length ? industries : ["No matching industries"];
+
+    // fallback
+    return industries.length ? industries : ["General"];
   }
 
-  recommendCompanies(industries, filters) {
-    let companies = companyData.filter(c => industries.includes(c.sector));
-    if (filters.country) {
-      companies = companies.filter(c => c.country.toLowerCase().includes(filters.country.toLowerCase()));
+  /* --------------------------------------------
+     3) Company recommendation                    
+     -------------------------------------------- */
+  recommendCompanies(industries, { country = "", max = 5 } = {}) {
+    let list = companyData.filter(c => industries.includes(c.sector));
+
+    if (country) {
+      list = list.filter(c => c.country.toLowerCase().includes(country.toLowerCase()));
     }
-    companies.sort((a, b) => b.veteranFriendlinessScore - a.veteranFriendlinessScore);
-    return companies.slice(0, 5);
+
+    // sort by veteran score desc then alphabetically
+    list.sort((a, b) => {
+      if (b.veteranFriendlinessScore !== a.veteranFriendlinessScore) {
+        return b.veteranFriendlinessScore - a.veteranFriendlinessScore;
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    return list.slice(0, max);
   }
 
-  async saveProfile(profileData) {
+  /* --------------------------------------------
+     4) Save profile to Firestore                 
+     -------------------------------------------- */
+  async saveProfile(profile) {
+    if (!this.db) throw new Error("Firestore not initialised");
     try {
-      this.initializeFirestore();
-      await this.db.collection("users").doc(this.userId).collection("jobProfiles").add(profileData);
+      await this.db.collection("users").doc(this.userId).collection("jobProfiles").add({
+        ...profile,
+        createdAt: new Date()
+      });
       return true;
-    } catch (error) {
-      console.error("Error saving profile:", error);
+    } catch (err) {
+      console.error("[JobIdentifier] saveProfile()", err);
       return false;
     }
   }
 
-  generateResumeData(roleData, companies) {
+  /* --------------------------------------------
+     5) Generate minimal data for resume builder  
+     -------------------------------------------- */
+  generateResumeData({ civilianRoles, keywords, industries }, companies) {
     return {
-      civilianRoles: roleData.civilianRoles,
-      keywords: roleData.keywords,
-      targetCompanies: companies.map(c => c.name),
-      industries: roleData.industries
+      headlineRoles: civilianRoles,
+      focusKeywords: keywords,
+      industries,
+      targetCompanies: companies.map(c => c.name)
     };
   }
 }
 
-export { JobIdentifier };
+// ------------------------------------------------------------
+//  END  – add / tweak mappings in `roleMappings` & `rankLevels`
+//        – regenerate `data/companyData.js` via scripts/pdf‑to‑json
+// ------------------------------------------------------------
