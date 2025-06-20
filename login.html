@@ -305,11 +305,14 @@
     const togglePassword = document.querySelector(".toggle-password");
     const forgotPassword = document.getElementById("forgotPassword");
 
+    let isSubmitting = false;
+
     // Redirect authenticated users to index.html
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log("User already logged in, redirecting to index.html");
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.replace("index.html");
       }
     });
 
@@ -363,21 +366,26 @@
     // Login form submission
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      loginError.style.display = "none";
+      e.stopPropagation(); // Extra precaution to stop form submission
 
-      if (!validateForm()) return;
+      if (isSubmitting || !validateForm()) return;
 
+      isSubmitting = true;
       loginBtn.disabled = true;
       loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+      loginError.style.display = "none";
 
       try {
         const email = sanitizeInput(emailInput.value.trim());
         const password = passwordInput.value.trim();
         
+        console.log("Attempting login with email:", email);
         await signInWithEmailAndPassword(auth, email, password);
+        console.log("Login successful, setting localStorage and redirecting");
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.replace("index.html"); // Use replace to avoid back-button issues
       } catch (error) {
+        console.error("Login error:", error.code, error.message);
         loginError.style.display = "block";
         switch (error.code) {
           case "auth/user-not-found":
@@ -389,10 +397,14 @@
           case "auth/too-many-requests":
             loginError.textContent = "Too many attempts. Please try again later.";
             break;
+          case "auth/invalid-credential":
+            loginError.textContent = "Invalid email or password.";
+            break;
           default:
-            loginError.textContent = "An error occurred. Please try again.";
+            loginError.textContent = `Login failed: ${error.message}`;
         }
       } finally {
+        isSubmitting = false;
         loginBtn.disabled = false;
         loginBtn.textContent = "Login";
       }
@@ -410,11 +422,13 @@
       }
 
       try {
+        console.log("Sending password reset email to:", email);
         await sendPasswordResetEmail(auth, email);
         loginError.textContent = "Password reset email sent. Check your inbox.";
         loginError.style.color = "#28a745";
         loginError.style.display = "block";
       } catch (error) {
+        console.error("Password reset error:", error.code, error.message);
         loginError.style.color = var(--error-color);
         loginError.textContent = "Error sending reset email. Please try again.";
         loginError.style.display = "block";
