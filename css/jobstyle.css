@@ -1,0 +1,162 @@
+/* jobstyle.css – Enhanced Dynamic UI for Job Identifier */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #f5f8fa, #e6ecf3);
+  color: #1c1d1f;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.site-header {
+  background-color: #002855;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.site-header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.job-identifier {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #0055a5;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 85, 165, 0.2);
+}
+
+.btn {
+  background: #004080;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #0066cc;
+}
+
+.results {
+  margin-top: 2rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.results h3 {
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  color: #003366;
+}
+
+.results ul {
+  list-style: none;
+  padding: 0;
+}
+
+.results li {
+  background: #f0f4f9;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.results li:hover {
+  transform: translateX(4px);
+}
+
+.sector-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.sector-card {
+  background: #e9f0f8;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.sector-card:hover {
+  background: #cfe2ff;
+  transform: scale(1.03);
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #002855;
+  color: #ffffff;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
