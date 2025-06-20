@@ -3,6 +3,7 @@
 const CACHE_NAME = "guided-ambitions-cache-v1";
 const urlsToCache = [
   "/GuidedAmbitions/index.html",
+  "/GuidedAmbitions/login.html",
   "/GuidedAmbitions/job-identifier.html",
   "/GuidedAmbitions/css/modern-ui.css",
   "/GuidedAmbitions/css/custom.css",

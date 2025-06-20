@@ -1,7 +1,7 @@
 {
   "name": "Guided Ambitions Platform",
   "short_name": "GuidedAmbitions",
-  "start_url": "/GuidedAmbitions/index.html",
+  "start_url": "/GuidedAmbitions/login.html",
   "scope": "/GuidedAmbitions/",
   "display": "standalone",
   "background_color": "#ffffff",
