@@ -1,7 +1,7 @@
 // data/rankMaps.js  
 // Map Indian Armed Forces ranks (Army, Navy, Air Force) → civilian seniority buckets.  
 
-export const rankToSeniority = {
+export const rankLevels = {
   // --- Army ---
   "Sepoy": "Entry‑Level",
   "Lance Naik": "Entry‑Level",
