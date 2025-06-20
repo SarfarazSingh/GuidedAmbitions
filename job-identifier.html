@@ -196,7 +196,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-    import JobIdentifier from "./job-identifier.js";
+    import { JobIdentifier } from "./job-identifier.js"; // Changed to named import
 
     const firebaseConfig = {
       apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
@@ -218,7 +218,7 @@
         const firebaseError = document.getElementById("firebaseError");
         firebaseError.textContent = "Failed to connect to services. Please try again later.";
         firebaseError.style.display = "block";
-        return; // Valid return inside a function
+        return;
       }
 
       // Redirect unauthenticated users
