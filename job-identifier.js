@@ -104,4 +104,4 @@ class JobIdentifier {
   }
 }
 
-export default JobIdentifier; // Changed to default export
+export { JobIdentifier };
