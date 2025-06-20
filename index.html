@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/modern-ui.css">
     <link rel="stylesheet" href="css/custom.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Page Loader -->
@@ -41,6 +41,7 @@
                                 <a href="components/resume_generator/index.html" class="dropdown-item">Resume Generator</a>
                                 <a href="components/ats_scanner/index.html" class="dropdown-item">ATS Scanner</a>
                                 <a href="components/interview_coach/index.html" class="dropdown-item">Interview Coach</a>
+                                <a href="job-identifier.html" class="dropdown-item">Job Identifier</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -156,6 +157,23 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Job Identifier -->
+                <div class="col-md-6 col-lg-3 mb-4 animated-item">
+                    <div class="card tilt-card">
+                        <img src="images/job_identifier_feature.jpg" alt="Job Identifier Tool" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Job Identifier</h3>
+                            <p class="card-text">Map your military role to civilian jobs, industries, and top companies tailored to your skills.</p>
+                            <ul class="feature-list">
+                                <li>Military-to-civilian role mapping</li>
+                                <li>Industry and company recommendations</li>
+                                <li>Resume keyword integration</li>
+                            </ul>
+                            <a href="job-identifier.html" class="btn btn-primary btn-animated">Find Jobs</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -209,8 +227,6 @@
                     </div>
                 </div>
                 
-                <div>
-                
                 <div class="timeline-item reveal-on-scroll" data-reveal-animation="slide-in" data-reveal-delay="0.5">
                     <div class="timeline-icon">
                         <i class="fas fa-briefcase"></i>
@@ -232,7 +248,7 @@
                 <p>Hear from veterans who successfully transitioned to civilian careers</p>
             </div>
             
-            <div class="testimonials-slider">
+            <div class="testimonials-carousel">
                 <div class="testimonial-item">
                     <div class="testimonial-content">
                         <p>"After 12 years in the Army, I struggled to explain my leadership experience to civilian employers. The Skill Translator helped me convert my military achievements into terms that resonated with hiring managers."</p>
@@ -263,9 +279,9 @@
                     <div class="testimonial-content">
                         <p>"The Interview Coach helped me prepare for behavioral questions I hadn't anticipated. The feedback on my communication style was invaluable and gave me the confidence to ace my interviews."</p>
                         <div class="testimonial-author">
-                            <img src="images/testimonial-3.jpg" alt="Mithun Prakash, Wing Commander">
+                            <img src="images/testimonial-3.jpg" alt="Mithun Mishra, Wing Commander">
                             <div>
-                                <h4>Mithun Prakash</h4>
+                                <h4>Mithun Mishra</h4>
                                 <p>Former Indian Air Force Officer, now Security Consultant</p>
                             </div>
                         </div>
@@ -285,8 +301,8 @@
     <section class="section cta-section">
         <div class="container">
             <div class="cta-content text-center">
-                <h2 class="animate-on-scroll" data-animation="fade-in">Ready to Advance Your Civilian Career?</h2>
-                <p class="animate-on-scroll" data-animation="fade-in" data-delay="0.2">Our comprehensive tools are designed specifically for veterans transitioning to civilian careers.</p>
+                <h2 class="animate-on-scroll" data-animation="fade-in">Ready to advance your civilian career?</h2>
+                <p class="animate-on-scroll" data-animation="slide-in" data-delay="0.2">Our comprehensive tools are designed specifically for veterans transitioning to civilian careers.</p>
                 <div class="cta-buttons animate-on-scroll" data-animation="fade-in" data-delay="0.4">
                     <a href="components/skill_translator/index.html" class="btn btn-primary btn-lg btn-animated">Get Started Now</a>
                     <a href="about.html" class="btn btn-outline btn-lg btn-animated">Learn More</a>
@@ -318,6 +334,7 @@
                         <li><a href="components/resume_generator/index.html">Resume Generator</a></li>
                         <li><a href="components/ats_scanner/index.html">ATS Scanner</a></li>
                         <li><a href="components/interview_coach/index.html">Interview Coach</a></li>
+                        <li><a href="job-identifier.html">Job Identifier</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -353,8 +370,8 @@
 
     <!-- Firebase Scripts -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",

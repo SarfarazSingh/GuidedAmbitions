@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Job Identifier - Veteran Transition Platform">
+  <title>Job Identifier | Guided Ambitions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/modern-ui.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary-color: #004080;
+      --primary-hover: #0055a5;
+      --error-color: #dc3545;
+      --border-color: #ccc;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f8fa;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .job-identifier {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      margin: 2rem auto;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+    .results {
+      margin-top: 2rem;
+    }
+    .results h3 {
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1rem;
+    }
+    .results ul {
+      list-style: none;
+      padding: 0;
+    }
+    .results ul li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .sector-card {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sector-card:hover {
+      background: #e0e7ff;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="navbar-brand">
+        <img src="images/logo.png" alt="Veteran Transition Platform Logo">
+        <h1>Guided Ambitions - Veteran Transition Platform</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="job-identifier container">
+    <h2>Job Identifier</h2>
+    <form id="jobIdentifierForm">
+      <div class="form-group">
+        <label for="militaryRole">Military Role</label>
+        <select id="militaryRole" required>
+          <option value="">Select Role</option>
+          <option value="Logistics Officer">Logistics Officer</option>
+          <option value="Naval Engineer">Naval Engineer</option>
+          <option value="Submarine Radio Operator">Submarine Radio Operator</option>
+          <option value="Radiation Safety Officer">Radiation Safety Officer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rank">Rank</label>
+        <input type="text" id="rank" placeholder="e.g., Lt Cdr" required>
+      </div>
+      <div class="form-group">
+        <label for="specialization">Specialization</label>
+        <input type="text" id="specialization" placeholder="e.g., Radiation Safety" required>
+      </div>
+      <div class="filters">
+        <div class="form-group">
+          <label for="location">Location Preference</label>
+          <input type="text" id="location" placeholder="e.g., India">
+        </div>
+        <div class="form-group">
+          <label for="remoteWork">Remote Work</label>
+          <select id="remoteWork">
+            <option value="">Any</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills Tags</label>
+          <input type="text" id="skills" placeholder="e.g., Leadership, Technical">
+        </div>
+        <div class="form-group">
+          <label for="experience">Years of Experience</label>
+          <input type="number" id="experience" placeholder="e.g., 10">
+        </div>
+      </div>
+      <button type="submit" class="btn">Find Jobs</button>
+    </form>
+    <div class="results" id="results" style="display: none;">
+      <h3>Civilian Roles</h3>
+      <ul id="civilianRoles"></ul>
+      <h3>Industries</h3>
+      <ul id="industries"></ul>
+      <h3>Top Companies</h3>
+      <ul id="companies"></ul>
+      <button class="btn" id="saveProfile">Save Profile</button>
+      <a href="components/resume_generator/index.html" class="btn" id="generateResume">Generate Resume</a>
+    </div>
+    <div class="sector-grid">
+      <h3>Browse by Sector</h3>
+      <div class="sector-card" data-sector="Consulting">Consulting</div>
+      <div class="sector-card" data-sector="Technology">Technology</div>
+      <div class="sector-card" data-sector="FMCG">FMCG</div>
+      <div class="sector-card" data-sector="Logistics">Logistics</div>
+      <div class="sector-card" data-sector="Defense">Defense</div>
+      <!-- Add more sectors from PDF -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Veteran Transition Platform. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-firestore.js";
+    import JobIdentifier from "./job-identifier.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
+      authDomain: "veteranplatform-e1e5c.firebaseapp.com",
+      projectId: "veteranplatform-e1e5c",
+      storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
+      messagingSenderId: "649635260587",
+      appId: "1:649635260587:web:486e5d09a020c3dee6efee"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Redirect unauthenticated users
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.replace("login.html");
+      } else {
+        initJobIdentifier(user.uid);
+      }
+    });
+
+    function initJobIdentifier(userId) {
+      const jobIdentifier = new JobIdentifier(userId);
+      const form = document.getElementById("jobIdentifierForm");
+      const results = document.getElementById("results");
+      const civilianRoles = document.getElementById("civilianRoles");
+      const industries = document.getElementById("industries");
+      const companies = document.getElementById("companies");
+      const saveProfileBtn = document.getElementById("saveProfile");
+      const generateResumeBtn = document.getElementById("generateResume");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const militaryRole = document.getElementById("militaryRole").value;
+        const rank = document.getElementById("rank").value;
+        const specialization = document.getElementById("specialization").value;
+        const location = document.getElementById("location").value;
+        const remoteWork = document.getElementById("remoteWork").value === "true";
+        const skills = document.getElementById("skills").value.split(",").map(s => s.trim()).filter(s => s);
+        const experience = parseInt(document.getElementById("experience").value) || 0;
+
+        // Map military role
+        const roleData = jobIdentifier.mapMilitaryRole(militaryRole, rank, specialization);
+
+        // Align industries
+        const matchedIndustries = jobIdentifier.alignIndustries(roleData, {
+          location,
+          remoteWork,
+          skills,
+          experience
+        });
+
+        // Recommend companies
+        const recommendedCompanies = jobIdentifier.recommendCompanies(matchedIndustries, {
+          country: location.toLowerCase().includes("india") ? "India" : "",
+          companyType: ""
+        });
+
+        // Display results
+        civilianRoles.innerHTML = roleData.civilianRoles.map(r => `<li>${r}</li>`).join("");
+        industries.innerHTML = matchedIndustries.map(i => `<li>${i}</li>`).join("");
+        companies.innerHTML = recommendedCompanies.map(c => `<li>${c.name} (${c.sector}) - Veteran Score: ${c.veteranFriendlinessScore.toFixed(1)}</li>`).join("");
+        results.style.display = "block";
+
+        // Save profile
+        saveProfileBtn.addEventListener("click", async () => {
+          const profileData = {
+            militaryRole,
+            rank,
+            specialization,
+            civilianRoles: roleData.civilianRoles,
+            industries: matchedIndustries,
+            companies: recommendedCompanies.map(c => c.name),
+            filters: { location, remoteWork, skills, experience },
+            timestamp: new Date().toISOString()
+          };
+          const saved = await jobIdentifier.saveProfile(profileData);
+          alert(saved ? "Profile saved!" : "Error saving profile.");
+        }, { once: true });
+
+        // Resume integration
+        generateResumeBtn.addEventListener("click", () => {
+          const resumeData = jobIdentifier.generateResumeData(roleData, recommendedCompanies);
+          localStorage.setItem("resumeData", JSON.stringify(resumeData));
+        }, { once: true });
+      });
+
+      // Sector browsing
+      document.querySelectorAll(".sector-card").forEach(card => {
+        card.addEventListener("click", () => {
+          const sector = card.dataset.sector;
+          const sectorCompanies = companyData.filter(c => c.sector === sector);
+          civilianRoles.innerHTML = `<li>Explore roles in ${sector}</li>`;
+          industries.innerHTML = `<li>${sector}</li>`;
+          companies.innerHTML = sectorCompanies.map(c => `<li>${c.name}</li>`).join("");
+          results.style.display = "block";
+        });
+      });
+    }
+
+    // Bonus Features Roadmap
+    // TODO: Skill Gap Analyzer - Compare military skills with job requirements
+    // TODO: LinkedIn Job Sync - Fetch jobs using LinkedIn API
+    // TODO: Mentor Connect - Integrate veteran mentor profiles
+  </script>
+</body>
+</html>
