@@ -8,9 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/modern-ui.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="manifest" href="/manifest.json">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((reg) => console.log("SW registered:", reg))
+        .catch((err) => console.error("SW registration failed:", err));
+    });
+  }
+</script>
+
     <!-- Page Loader -->
     <div class="page-loader">
         <div class="loader-spinner"></div>
