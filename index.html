@@ -396,17 +396,71 @@
         });
 
         // Logout functionality
-        const logoutBtn = document.getElementById("logoutBtn");
-        logoutBtn.addEventListener("click", async () => {
-            try {
-                await signOut(auth);
-                localStorage.removeItem("isLoggedIn");
-                window.location.href = "login.html";
-            } catch (error) {
-                console.error("Logout error:", error);
-            }
-        });
-    </script>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
+    authDomain: "veteranplatform-e1e5c.firebaseapp.com",
+    projectId: "veteranplatform-e1e5c",
+    storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
+    messagingSenderId: "649635260587",
+    appId: "1:649635260587:web:486e5d09a020c3dee6efee"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Error during logout. Please try again.");
+      }
+    });
+  }
+</script>
+
+    
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
+    authDomain: "veteranplatform-e1e5c.firebaseapp.com",
+    projectId: "veteranplatform-e1e5c",
+    storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
+    messagingSenderId: "649635260587",
+    appId: "1:649635260587:web:486e5d09a020c3dee6efee"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Error during logout. Please try again.");
+      }
+    });
+  }
+</script>
+
 
     <!-- Other Scripts -->
     <script src="js/animated-dropdowns.js"></script>
