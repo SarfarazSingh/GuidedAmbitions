@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Login to Guided Ambitions - Veteran Transition Platform">
-  <title>Login | Guided Ambitions - Veteran Transition Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale="1.0">
+  <meta name="description" content="Login to Vision - Guided Ambitions">
+  <title>Login | Guided Ambitions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/modern-ui.css">
   <link rel="stylesheet" href="css/custom.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Use Font Awesome CDN to avoid CORS issues -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" crossorigin="anonymous"></script>
   <style>
     :root {
       --primary-color: #004080;
@@ -246,7 +247,7 @@
         <label for="password">Password</label>
         <div class="password-container">
           <input type="password" id="password" placeholder="Enter your password" required aria-describedby="passwordError" />
-          <span class="toggle-password" role="button" aria-label="Toggle password visibility">👁️</span>
+          <span class="toggle-password" role="button" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></span>
         </div>
         <p id="passwordError" class="error-message"></p>
       </div>
@@ -280,8 +281,8 @@
 
   <!-- Firebase Scripts -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
@@ -327,7 +328,7 @@
     togglePassword.addEventListener("click", () => {
       const type = passwordInput.type === "password" ? "text" : "password";
       passwordInput.type = type;
-      togglePassword.textContent = type === "password" ? "👁️" : "👁️‍🗨️";
+      togglePassword.innerHTML = type === "password" ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
     });
 
     // Form validation
@@ -366,7 +367,7 @@
     // Login form submission
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      e.stopPropagation(); // Extra precaution to stop form submission
+      e.stopPropagation();
 
       if (isSubmitting || !validateForm()) return;
 
@@ -383,7 +384,7 @@
         await signInWithEmailAndPassword(auth, email, password);
         console.log("Login successful, setting localStorage and redirecting");
         localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("index.html"); // Use replace to avoid back-button issues
+        window.location.replace("index.html");
       } catch (error) {
         console.error("Login error:", error.code, error.message);
         loginError.style.display = "block";
