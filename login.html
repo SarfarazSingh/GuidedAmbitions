@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale="1.0">
-  <meta name="description" content="Login to Vision - Guided Ambitions">
-  <title>Login | Guided Ambitions</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to Guided Ambitions - Veteran Transition Platform">
+  <title>Login | Guided Ambitions - Veteran Transition Platform</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/modern-ui.css">
   <link rel="stylesheet" href="css/custom.css">
@@ -281,8 +281,8 @@
 
   <!-- Firebase Scripts -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.9.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
@@ -430,6 +430,7 @@
         loginError.style.display = "block";
       } catch (error) {
         console.error("Password reset error:", error.code, error.message);
+        loginError.style.color = "#dc3545";
         loginError.textContent = "Error sending reset email. Please try again.";
         loginError.style.display = "block";
       }
@@ -440,4 +441,4 @@
     passwordInput.addEventListener("input", validateForm);
   </script>
 </body>
-</html>
+</html> 
