@@ -76,13 +76,9 @@ class Veteran_Transition_Platform {
             has_shortcode($post->post_content, 'veteran_interview_coach')
         )) {
             // Register and enqueue styles
-            wp_register_style('veteran-platform-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap');
-            wp_register_style('veteran-platform-fontawesome', 'https://kit.fontawesome.com/a076d05399.js');
             wp_register_style('veteran-platform-modern-ui', plugin_dir_url(__FILE__) . 'assets/css/modern-ui.css');
             wp_register_style('veteran-platform-custom', plugin_dir_url(__FILE__) . 'assets/css/custom.css');
             
-            wp_enqueue_style('veteran-platform-fonts');
-            wp_enqueue_style('veteran-platform-fontawesome');
             wp_enqueue_style('veteran-platform-modern-ui');
             wp_enqueue_style('veteran-platform-custom');
             
