@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to Guided Ambitions - Veteran Transition Platform">
+  <title>Login | Guided Ambitions - Veteran Transition Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/modern-ui.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary-color: #004080;
+      --primary-hover: #0055a5;
+      --error-color: #dc3545;
+      --border-color: #ccc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f8fa;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+    }
+
+    .navbar-brand h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      color: #333;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .login-container h2 {
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.75rem;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .forgot-password, .signup-link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .forgot-password a, .signup-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .forgot-password a:hover, .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: auto;
+      background-color: #333;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-links li a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-hover);
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 1.5rem;
+      }
+
+      .navbar-brand h1 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="navbar-brand">
+        <img src="images/logo.png" alt="Veteran Transition Platform Logo">
+        <h1>Guided Ambitions - Veteran Transition Platform</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h2>Veteran Login</h2>
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required aria-describedby="emailError" />
+        <p id="emailError" class="error-message"></p>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" placeholder="Enter your password" required aria-describedby="passwordError" />
+          <span class="toggle-password" role="button" aria-label="Toggle password visibility">👁️</span>
+        </div>
+        <p id="passwordError" class="error-message"></p>
+      </div>
+      <button type="submit" class="btn" id="loginBtn">Login</button>
+      <p id="loginError" class="error-message"></p>
+      <div class="forgot-password">
+        <a href="#" id="forgotPassword">Forgot Password?</a>
+      </div>
+      <div class="signup-link">
+        <a href="signup.html">Don't have an account? Sign Up</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>© 2025 Veteran Transition Platform. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC1cUmVzVfLmhztP-Dk4eq9tK1cExhhMOs",
+      authDomain: "veteranplatform-e1e5c.firebaseapp.com",
+      projectId: "veteranplatform-e1e5c",
+      storageBucket: "veteranplatform-e1e5c.firebasestorage.app",
+      messagingSenderId: "649635260587",
+      appId: "1:649635260587:web:486e5d09a020c3dee6efee"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById("loginForm");
+    const loginBtn = document.getElementById("loginBtn");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginError = document.getElementById("loginError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const togglePassword = document.querySelector(".toggle-password");
+    const forgotPassword = document.getElementById("forgotPassword");
+
+    // Redirect authenticated users to index.html
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+      }
+    });
+
+    // Basic input sanitization
+    const sanitizeInput = (input) => {
+      const div = document.createElement("div");
+      div.textContent = input;
+      return div.innerHTML;
+    };
+
+    // Password visibility toggle
+    togglePassword.addEventListener("click", () => {
+      const type = passwordInput.type === "password" ? "text" : "password";
+      passwordInput.type = type;
+      togglePassword.textContent = type === "password" ? "👁️" : "👁️‍🗨️";
+    });
+
+    // Form validation
+    const validateForm = () => {
+      let isValid = true;
+      emailError.textContent = "";
+      passwordError.textContent = "";
+      loginError.textContent = "";
+      
+      const email = sanitizeInput(emailInput.value.trim());
+      const password = passwordInput.value.trim();
+
+      if (!email) {
+        emailError.textContent = "Email is required";
+        emailError.style.display = "block";
+        isValid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailError.textContent = "Please enter a valid email";
+        emailError.style.display = "block";
+        isValid = false;
+      }
+
+      if (!password) {
+        passwordError.textContent = "Password is required";
+        passwordError.style.display = "block";
+        isValid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters";
+        passwordError.style.display = "block";
+        isValid = false;
+      }
+
+      return isValid;
+    };
+
+    // Login form submission
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      loginError.style.display = "none";
+
+      if (!validateForm()) return;
+
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+
+      try {
+        const email = sanitizeInput(emailInput.value.trim());
+        const password = passwordInput.value.trim();
+        
+        await signInWithEmailAndPassword(auth, email, password);
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+      } catch (error) {
+        loginError.style.display = "block";
+        switch (error.code) {
+          case "auth/user-not-found":
+            loginError.textContent = "No account found with this email.";
+            break;
+          case "auth/wrong-password":
+            loginError.textContent = "Incorrect password. Please try again.";
+            break;
+          case "auth/too-many-requests":
+            loginError.textContent = "Too many attempts. Please try again later.";
+            break;
+          default:
+            loginError.textContent = "An error occurred. Please try again.";
+        }
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Login";
+      }
+    });
+
+    // Forgot password functionality
+    forgotPassword.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = sanitizeInput(emailInput.value.trim());
+      
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        loginError.textContent = "Please enter a valid email to reset your password.";
+        loginError.style.display = "block";
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        loginError.textContent = "Password reset email sent. Check your inbox.";
+        loginError.style.color = "#28a745";
+        loginError.style.display = "block";
+      } catch (error) {
+        loginError.style.color = var(--error-color);
+        loginError.textContent = "Error sending reset email. Please try again.";
+        loginError.style.display = "block";
+      }
+    });
+
+    // Real-time validation
+    emailInput.addEventListener("input", validateForm);
+    passwordInput.addEventListener("input", validateForm);
+  </script>
+</body>
+</html>
