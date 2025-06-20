@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Veteran Transition Platform</title>
+    <link rel="stylesheet" href="css/modern-ui.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="Veteran Transition Platform Logo">
+                        <h1>Veteran Transition Platform</h1>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="login-container">
+        <div class="login-card">
+            <h2 class="text-center mb-3">Login</h2>
+            <form id="loginForm" class="login-form">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+                <div id="loginError" class="login-error" style="display:none;color:#a6192e;margin-bottom:10px;">Invalid credentials. Please try again.</div>
+                <button type="submit" class="btn btn-primary btn-animated w-100">Login</button>
+            </form>
+        </div>
+    </main>
+    <script src="js/login.js"></script>
+</body>
+</html>
