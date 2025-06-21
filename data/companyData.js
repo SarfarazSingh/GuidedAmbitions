@@ -6,7 +6,7 @@ export const companyData = [
   // Consulting
   { "name": "Accenture", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 8.5 },
   { "name": "Alpha Sights", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 7.0 },
-  { "name": "Alvarez & Marsal", "asd": "Consulting", "country": "India", "veteranFriendlinessScore": 7.2 },
+  { "name": "Alvarez & Marsal", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 7.2 },
   { "name": "Korn Ferry", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 7.3 },
   { "name": "KPMG", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 8.1 },
   { "name": "McKinsey", "sector": "Consulting", "country": "India", "veteranFriendlinessScore": 8.2 },
